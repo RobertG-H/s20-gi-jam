@@ -32,12 +32,12 @@ public class DemoGameManager : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresO
 
 	void IRecieveCarBreakAlert.TraincarIsBroken(GameObject Traincar, ICanBreakdown traincar, IAmAMinigame minigame)
 	{
-		Debug.Log("i dont care");
+		//Debug.Log("i dont care");
 	}
 
 	void IRecieveCarBreakAlert.TraincarIsDamaged(GameObject Traincar, ICanBreakdown traincar, IAmAMinigame minigame)
 	{
-		Debug.Log("i dont care");
+		//Debug.Log("i dont care");
 	}
 
 

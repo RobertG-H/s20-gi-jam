@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     public float speed;
     public float defeat_pause_duration = 0.3f;
+    public CottManager manager;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,17 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine(BecomeDefeated());
+        Debug.Log(other.name);
+        if (other.name == "CircleCollider")
+        {
+            StartCoroutine(BecomeDefeated());
+            manager.DecreaseRemainingEnemies();
+        }
+        else if (other.name == "EndZone")
+        {
+            manager.LoseGame();
+            Destroy(gameObject);
+        }
     }
 
     private IEnumerator BecomeDefeated()

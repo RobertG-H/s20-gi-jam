@@ -19,6 +19,7 @@ public class CircleController : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
         ChangeKey();
+        collider.active = false;
     }
 
     // Update is called once per frame

@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public float spawn_period_max = 1.25f;
     public float spawn_period_min = 0.75f;
     public Transform enemy_prefab;
+    public CottManager manager;
 
     private int num_children;
 
@@ -25,15 +26,19 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnManager()
     {
+        manager.DecreaseSpawns();
         SpawnEnemy(Random.Range(0, num_children));
         float wait = Random.Range(spawn_period_min, spawn_period_max);
         yield return new WaitForSeconds(wait);
-        StartCoroutine(SpawnManager());
+
+        if (manager.SpawnsRemaining())
+            StartCoroutine(SpawnManager());
     }
 
     private void SpawnEnemy(int column_number)
     {
         Transform column = transform.GetChild(column_number);
-        Instantiate(enemy_prefab, column);
+        EnemyController enemy = Instantiate(enemy_prefab, column).gameObject.GetComponent<EnemyController>();
+        enemy.manager = manager;
     }
 }
