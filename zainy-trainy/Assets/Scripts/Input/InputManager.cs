@@ -23,6 +23,23 @@ public class InputManager : MonoBehaviour, IServiceProvider, IRegisterInputs
         registeredWASDInputObjects.Add(inputObject);
     }
 
+    void IRegisterInputs.UnRegisterMouseInputObject(IRecieveMouseInputs inputObject)
+    {
+        if(registeredMouseInputObjects.Contains(inputObject))
+        {
+            registeredMouseInputObjects.Remove(inputObject);
+        }
+
+    }
+
+    void IRegisterInputs.UnRegisterWASDInputObject(IRecieveWASDInputs inputObject)
+    {
+        if(registeredWASDInputObjects.Contains(inputObject))
+        {
+            registeredWASDInputObjects.Remove(inputObject);
+        }
+    }
+
     public void OnMousePosition(InputAction.CallbackContext context)
     {
         Vector2 value = context.ReadValue<Vector2>();
@@ -87,5 +104,4 @@ public class InputManager : MonoBehaviour, IServiceProvider, IRegisterInputs
             inputObject.OnSpaceKeyPressed();
         }
     }
-
 }
