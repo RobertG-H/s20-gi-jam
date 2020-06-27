@@ -21,7 +21,6 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         if (other.name == "CircleCollider")
         {
             StartCoroutine(BecomeDefeated());
