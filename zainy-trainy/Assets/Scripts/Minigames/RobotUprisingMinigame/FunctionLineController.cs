@@ -6,15 +6,16 @@ using UnityEngine.UI;
 
 public class FunctionLineController : MonoBehaviour
 {
+    [HideInInspector]
     public RobotUprising robotUprisingController;
     public bool isBad;
+    public bool isSyntaxError;
     public Color goodColor;
     public Color badColor;
     public TMP_InputField inputField;
-    public TextMeshProUGUI originalFunctionTMP;
-    public TextMeshProUGUI playerFunctionTMP;
-    public Image textBackground;
     public string playerFunctionString;
+    private string defaultString;
+    private bool defaultBad;
 
     void Awake()
     {
@@ -27,23 +28,58 @@ public class FunctionLineController : MonoBehaviour
     }
     public void SetFunction(string text, bool isBad)
     {
-        originalFunctionTMP.SetText(text);
-        this.isBad = isBad;
+        defaultBad = isBad;
+        defaultString = text;
+        SetToDefaultString();
     }
     public void UpdatePlayerFunctionString(string newPlayerFunctionString)
     {
-        playerFunctionString = newPlayerFunctionString;
+        if(robotUprisingController.usedGoodCodeLines.Contains(playerFunctionString))
+        {
+            robotUprisingController.ReleaseGoodCodeLIne(playerFunctionString);
+        }
+        if(newPlayerFunctionString == string.Empty)//Player deleted and then entered nothing, re-enter the default string
+        {
+            SetToDefaultString();
+        }
+        else if(newPlayerFunctionString != defaultString)//Player enterd a non-default, non-empty string
+        {
+            playerFunctionString = newPlayerFunctionString;
+            CheckGoodAndUnique();
+        }
     }
 
-    public void ShowCorrect()
+    public void CheckGoodAndUnique()
     {
-        if(string.IsNullOrEmpty(playerFunctionString) && isBad)
+        if(robotUprisingController.goodCodeLines.Contains(playerFunctionString))
+        {
+            if(!robotUprisingController.usedGoodCodeLines.Contains(playerFunctionString))
+            {
+                robotUprisingController.UseGoodCodeLine(playerFunctionString);
+                isBad = false;
+            }
+            else //Player already entered that string
+            {
+                //Play some kind of animation
+                SetToDefaultString();
+            }
+        }
+        else
+        {
+            //Play syntax error animation
+            robotUprisingController.GoToFunction(this);
+        }
+    }
+
+    public void ShowResult()
+    {
+        if(isBad)
         {
             inputField.image.color = badColor;
         }
-        else if(robotUprisingController.goodCodeLines.Contains(playerFunctionString) && isBad)
+        else if(isSyntaxError)
         {
-            inputField.image.color = goodColor;
+            inputField.image.color = Color.cyan;
         }
         else
         {
@@ -52,13 +88,17 @@ public class FunctionLineController : MonoBehaviour
     }
     public void Tab(int tabs)
     {
-        Vector4 newMargin = playerFunctionTMP.margin;
+        Vector4 newMargin = inputField.textComponent.margin;
         newMargin.x = 100 * tabs;
-        playerFunctionTMP.margin = newMargin;
+        inputField.textComponent.margin = newMargin;
+    }
 
-        newMargin = originalFunctionTMP.margin;
-        newMargin.x = 100 * tabs;
-        originalFunctionTMP.margin = newMargin;
+    public void SetToDefaultString()
+    {
+        inputField.text = defaultString;
+        playerFunctionString = defaultString;
+        isBad = defaultBad;
+        isSyntaxError = false;
     }
 
     void OnDestroy()

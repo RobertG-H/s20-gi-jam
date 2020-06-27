@@ -7,6 +7,9 @@ using UnityEngine.EventSystems;
 
 public class RobotUprising : MonoBehaviour
 {
+	//No scrolling
+	//Once a page is complete it goes to the next one
+	//Same # of good functions as total functions
 	public GameObject functionLinePrefab;
 	public GameObject codeLinePrefab;
 	public RectTransform codeContainer;
@@ -15,19 +18,21 @@ public class RobotUprising : MonoBehaviour
 
 	[SerializeField]
 	private List<CodeBlock> codeBlocks;
-
 	public List<string> goodCodeLines;
+	public List<string> usedGoodCodeLines;
 	private List<FunctionLineController> lineFunctions;
 	private int currentLine = 0;
 	public float initialCodeYPos;
 	public float codeYPosIncrease;
 	private float codeYPos;
+	private bool ctrlPressed, sPressed;
 	
 	 
     // Start is called before the first frame update
     void Start()
     {
 		lineFunctions = new List<FunctionLineController>();
+		usedGoodCodeLines = new List<string>();
 		codeYPos = initialCodeYPos;
         foreach(CodeBlock cb in codeBlocks)
 		{
@@ -73,17 +78,22 @@ public class RobotUprising : MonoBehaviour
 		lineFunctions[currentLine].inputField.ActivateInputField();
     }
 
+	public void GoToFunction(FunctionLineController line)
+	{
+		int index = lineFunctions.IndexOf(line);
+		currentLine = index;
+		lineFunctions[currentLine].inputField.ActivateInputField();
+	}
 	public void GoToNextFunction()
 	{
 		if(currentLine < lineFunctions.Count-1)
 		{
 			currentLine++;
 			lineFunctions[currentLine].inputField.ActivateInputField();
-		}
+		}		
 		else
 		{
 			DeselectCurrent();
-			Submit();
 		}
 	}
 	public void OnUp(InputAction.CallbackContext context)
@@ -106,11 +116,6 @@ public class RobotUprising : MonoBehaviour
 				currentLine++;
 				lineFunctions[currentLine].inputField.ActivateInputField();
 			}
-			else
-			{
-				DeselectCurrent();
-				Submit();
-			}
 		}
 	}
 
@@ -119,6 +124,38 @@ public class RobotUprising : MonoBehaviour
 		if(context.started)
 		{
 			GoToNextFunction();
+		}
+	}
+
+	public void OnCtrl(InputAction.CallbackContext context)
+	{
+		if(context.started)
+		{
+			ctrlPressed = true;
+			if(ctrlPressed && sPressed)
+			{
+				Submit();
+			}
+		}
+		else
+		{
+			sPressed = false;
+		}
+	}
+	
+	public void OnS(InputAction.CallbackContext context)
+	{
+		if(context.started)
+		{
+			sPressed = true;
+			if(ctrlPressed && sPressed)
+			{
+				Submit();
+			}
+		}
+		else
+		{
+			sPressed = false;
 		}
 	}
 
@@ -131,8 +168,20 @@ public class RobotUprising : MonoBehaviour
 	{
 		foreach(FunctionLineController lineFunc in lineFunctions)
 		{
-			lineFunc.ShowCorrect();
+			lineFunc.ShowResult();
+
+			//End or go to next page
 		}
+	}
+
+	public void UseGoodCodeLine(string line)
+	{
+		usedGoodCodeLines.Add(line);
+	}
+
+	public void ReleaseGoodCodeLIne(string line)
+	{
+		usedGoodCodeLines.Remove(line);
 	}
 
 

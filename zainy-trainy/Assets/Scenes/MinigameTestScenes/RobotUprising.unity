@@ -270,6 +270,7 @@ MonoBehaviour:
   moduleManager: {fileID: 86136039}
   codeBlocks: []
   goodCodeLines: []
+  usedGoodCodeLines: []
   initialCodeYPos: 0
   codeYPosIncrease: 0
 --- !u!114 &86136039 stripped
@@ -453,6 +454,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 267515569, guid: 0ff242f2962ee944da597c1f8600938e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 806451495}
+    - target: {fileID: 267515569, guid: 0ff242f2962ee944da597c1f8600938e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCtrl
+      objectReference: {fileID: 0}
+    - target: {fileID: 267515569, guid: 0ff242f2962ee944da597c1f8600938e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 267515569, guid: 0ff242f2962ee944da597c1f8600938e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 267515569, guid: 0ff242f2962ee944da597c1f8600938e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 806451495}
+    - target: {fileID: 267515569, guid: 0ff242f2962ee944da597c1f8600938e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnS
+      objectReference: {fileID: 0}
+    - target: {fileID: 267515569, guid: 0ff242f2962ee944da597c1f8600938e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 267515569, guid: 0ff242f2962ee944da597c1f8600938e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1132274037876065879, guid: 0ff242f2962ee944da597c1f8600938e,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -611,10 +644,22 @@ PrefabInstance:
     - target: {fileID: 8739350682078258016, guid: 0ff242f2962ee944da597c1f8600938e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000061035156
+      value: -0.00012207031
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ff242f2962ee944da597c1f8600938e, type: 3}
+--- !u!114 &806451495 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4650326120110410301, guid: 0ff242f2962ee944da597c1f8600938e,
+    type: 3}
+  m_PrefabInstance: {fileID: 267515567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb986e10b7cb544493a86ea4fcf1134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &866230136
 GameObject:
   m_ObjectHideFlags: 0
