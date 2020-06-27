@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class TypingController : MonoBehaviour
 {
-    public InputField input;
+    private InputField input;
+    public CircleController[] circles;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,9 @@ public class TypingController : MonoBehaviour
         if (text.Length > 0)
         {
             Debug.Log(text);
+            if (text == "a") {
+                circles[0].Activate();
+            }
             input.text = "";
         }
     }
