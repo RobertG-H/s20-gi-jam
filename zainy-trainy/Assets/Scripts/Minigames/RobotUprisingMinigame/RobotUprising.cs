@@ -12,28 +12,46 @@ public class RobotUprising : MonoBehaviour
 	//Same # of good functions as total functions
 	public GameObject functionLinePrefab;
 	public GameObject codeLinePrefab;
+	public GameObject goodFunctionPrefab;
 	public RectTransform codeContainer;
-	[SerializeField]
-	private DemoModuleManager moduleManager;
+	public RectTransform goodFunctionsContainer;
+	public int maxLines = 12;
 
 	[SerializeField]
+	private DemoModuleManager moduleManager;
 	private List<CodeBlock> codeBlocks;
-	public List<string> goodCodeLines;
-	public List<string> usedGoodCodeLines;
+	private List<TextMeshProUGUI> goodFunctionUIElements;
+	public List<string> goodFunctions;
+	public List<string> usedGoodFunctions;
 	private List<FunctionLineController> lineFunctions;
+	
+	#region Formatting
 	private int currentLine = 0;
 	public float initialCodeYPos;
 	public float codeYPosIncrease;
 	private float codeYPos;
+
+	public float initialGoodFunctionYPos;
+	public float goodFunctionYPosIncrease;
+	private float goodFunctionYPos;
+	#endregion
+
+
 	private bool ctrlPressed, sPressed;
+	private float score;
+	private bool submitted = false;
 	
 	 
     // Start is called before the first frame update
     void Start()
     {
 		lineFunctions = new List<FunctionLineController>();
-		usedGoodCodeLines = new List<string>();
+		goodFunctionUIElements = new List<TextMeshProUGUI>();
+		usedGoodFunctions = new List<string>();
 		codeYPos = initialCodeYPos;
+
+		int numFunctions = GenerateCodeLines();
+		GenerateGoodFunctions(numFunctions);
         foreach(CodeBlock cb in codeBlocks)
 		{
 			foreach(CodeBlock.line line in cb.lines)
@@ -75,8 +93,77 @@ public class RobotUprising : MonoBehaviour
 				codeYPos -= codeYPosIncrease;
 			}
 		}
+
+		goodFunctionYPos = initialGoodFunctionYPos;
+		foreach(string goodFunctionString in goodFunctions)
+		{
+
+			TextMeshProUGUI goodFunctionInstance = Instantiate(goodFunctionPrefab, goodFunctionsContainer.transform).GetComponent<TextMeshProUGUI>();
+			//Set position
+			Vector2 newPos = goodFunctionInstance.gameObject.transform.localPosition;
+			newPos.y = goodFunctionYPos;
+			goodFunctionInstance.gameObject.transform.localPosition = newPos;
+
+			//Update text
+			goodFunctionInstance.text = goodFunctionString;
+
+			goodFunctionUIElements.Add(goodFunctionInstance);
+			goodFunctionYPos -= goodFunctionYPosIncrease;
+		}
 		lineFunctions[currentLine].inputField.ActivateInputField();
     }
+
+	public void GenerateGoodFunctions(int numToGenerate)
+	{
+		goodFunctions = new List<string>();
+		List<int> usedIndices = new List<int>();
+		object[] allGoodFunctions = Resources.LoadAll("ScriptableObjects/GoodFunctions");
+		System.Random random = new System.Random();
+		for(int i = 0; i < numToGenerate; i++)
+		{
+			int randomIndex;
+			do
+			{
+				randomIndex = random.Next(allGoodFunctions.Length);
+			}
+			while(usedIndices.Contains(randomIndex) && usedIndices.Count != allGoodFunctions.Length);
+			usedIndices.Add(randomIndex);
+			goodFunctions.Add(((GoodFunction)allGoodFunctions[randomIndex]).function);
+		}
+	}
+
+	public int GenerateCodeLines()
+	{
+		codeBlocks = new List<CodeBlock>();
+		List<int> usedIndices = new List<int>();
+		int numFunctions = 0;
+		object[] allCodeBlocks = Resources.LoadAll("ScriptableObjects/CodeBlocks");
+		int currentNumberOfLines = 0;
+		System.Random random = new System.Random();
+		while(currentNumberOfLines < maxLines && usedIndices.Count != allCodeBlocks.Length)
+		{
+			int randomIndex;
+			do
+			{
+				randomIndex = random.Next(allCodeBlocks.Length);
+			}
+			while(usedIndices.Contains(randomIndex) && usedIndices.Count != allCodeBlocks.Length);
+			usedIndices.Add(randomIndex);
+			CodeBlock newCodeBlock = (CodeBlock)allCodeBlocks[randomIndex];
+			if(currentNumberOfLines + newCodeBlock.lines.Count <= maxLines)
+			{
+				codeBlocks.Add(newCodeBlock);
+				foreach(CodeBlock.line line in newCodeBlock.lines)
+				{
+					if(line.isFunction)
+					{
+						numFunctions++;
+					}
+				}
+			}
+		}
+		return numFunctions;
+	}
 
 	public void GoToFunction(FunctionLineController line)
 	{
@@ -129,33 +216,33 @@ public class RobotUprising : MonoBehaviour
 
 	public void OnCtrl(InputAction.CallbackContext context)
 	{
-		if(context.started)
+		if(context.ReadValue<float>() == 1)
 		{
 			ctrlPressed = true;
-			if(ctrlPressed && sPressed)
-			{
-				Submit();
-			}
 		}
 		else
 		{
-			sPressed = false;
+			ctrlPressed = false;
+		}
+		if(ctrlPressed && sPressed)
+		{
+			Submit();
 		}
 	}
 	
 	public void OnS(InputAction.CallbackContext context)
 	{
-		if(context.started)
+		if(context.ReadValue<float>() == 1)
 		{
 			sPressed = true;
-			if(ctrlPressed && sPressed)
-			{
-				Submit();
-			}
 		}
 		else
 		{
 			sPressed = false;
+		}
+		if(ctrlPressed && sPressed)
+		{
+			Submit();
 		}
 	}
 
@@ -166,32 +253,40 @@ public class RobotUprising : MonoBehaviour
 
 	public void Submit()
 	{
-		foreach(FunctionLineController lineFunc in lineFunctions)
+		if(!submitted)
 		{
-			lineFunc.ShowResult();
-
-			//End or go to next page
+			submitted = true;
+			float numberBad = 0;
+			float numberGood = 0;
+			foreach(FunctionLineController lineFunc in lineFunctions)
+			{
+				lineFunc.ShowResult();
+				if(lineFunc.isBad)
+				{
+					numberBad++;
+				}
+				else
+				{
+					numberGood++;
+				}
+			}
+			score = numberGood/(numberGood + numberBad);
+			Debug.Log(score);
+			// moduleManager.MinigameCompleted(score);
 		}
 	}
 
 	public void UseGoodCodeLine(string line)
 	{
-		usedGoodCodeLines.Add(line);
+		usedGoodFunctions.Add(line);
+		int goodFunctionIndex = goodFunctions.IndexOf(line);
+		goodFunctionUIElements[goodFunctionIndex].fontStyle = FontStyles.Strikethrough;
 	}
 
 	public void ReleaseGoodCodeLIne(string line)
 	{
-		usedGoodCodeLines.Remove(line);
+		usedGoodFunctions.Remove(line);
+		int goodFunctionIndex = goodFunctions.IndexOf(line);
+		goodFunctionUIElements[goodFunctionIndex].fontStyle = FontStyles.Normal;
 	}
-
-
-	// public void OnFastAndBadRepair()
-	// {
-	// 	moduleManager.MinigameCompleted(0.4f);
-	// }
-
-	// public void OnGoodRepair()
-	// {
-	// 	moduleManager.MinigameCompleted(1f);
-	// }
 }

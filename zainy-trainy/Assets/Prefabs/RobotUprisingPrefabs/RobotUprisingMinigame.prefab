@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000045404, y: 0.00059253}
+  m_AnchoredPosition: {x: 0.00004541874, y: 0.00059253}
   m_SizeDelta: {x: 1920, y: 1080.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4088582587837938072
@@ -142,6 +142,7 @@ RectTransform:
   m_Children:
   - {fileID: 3230220948216852319}
   - {fileID: 8008312987968297664}
+  - {fileID: 1270496326638907977}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -226,18 +227,22 @@ MonoBehaviour:
     type: 3}
   codeLinePrefab: {fileID: 2597126941467418030, guid: 059539e50036b23458b5694d32212cba,
     type: 3}
+  goodFunctionPrefab: {fileID: 1655486990243814569, guid: b055917b0bbebc54e8ee7bdb88ffbdc1,
+    type: 3}
   codeContainer: {fileID: 8739350682078258016}
+  goodFunctionsContainer: {fileID: 1270496326638907977}
+  maxLines: 12
   moduleManager: {fileID: 0}
-  codeBlocks:
-  - {fileID: 11400000, guid: d6d0e7318a85f3944860664c202953c2, type: 2}
-  - {fileID: 11400000, guid: b83c6bec261185a4bac2256b9c8a9adf, type: 2}
-  - {fileID: 11400000, guid: d6d0e7318a85f3944860664c202953c2, type: 2}
-  - {fileID: 11400000, guid: d6d0e7318a85f3944860664c202953c2, type: 2}
-  goodCodeLines:
-  - GoodStuff
-  usedGoodCodeLines: []
+  goodFunctions:
+  - g1
+  - g2
+  - g3
+  - g4
+  usedGoodFunctions: []
   initialCodeYPos: -50
   codeYPosIncrease: 75
+  initialGoodFunctionYPos: 470
+  goodFunctionYPosIncrease: 75
 --- !u!114 &267515569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,46 +269,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9d3ebd07-a73a-4bfa-b0bc-9721406c9b81
-    m_ActionName: Gameplay/MousePosition[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: d1a34376-6ee4-40af-a3fd-2f3c703d6a9f
-    m_ActionName: Gameplay/Mouse1[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 130a49ea-4001-449f-953c-fac4f9f3ee1b
-    m_ActionName: Gameplay/Mouse2[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: fede3ac6-7c45-4570-a920-4b00f0395e31
-    m_ActionName: Gameplay/W[/Keyboard/w]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ec4fc66f-db47-4393-9641-900da72d8776
-    m_ActionName: Gameplay/A[/Keyboard/a]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: fc1c6904-c458-4b90-b75e-929205bf580d
-    m_ActionName: Gameplay/S[/Keyboard/s]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 26fec906-dd64-4b0e-84cb-bf7f2be321bf
-    m_ActionName: Gameplay/D[/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: d10ea8bc-68b7-4f02-a2c5-697155ebb497
-    m_ActionName: Gameplay/Space[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b4912bfd-8e17-49f7-b196-c0ac6f403459
-    m_ActionName: Gameplay/New action
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 41e65cf2-3e0a-471a-804f-62acf5c36730
-    m_ActionName: Gameplay/New action
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4650326120110410301}
@@ -379,6 +344,42 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0780dd00-1bbf-4f6f-92b5-072f4fff8aa6
     m_ActionName: RobotUprising/S[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 67be2c13-fe4c-4237-b8d5-3c84097b60a7
+    m_ActionName: Gameplay/MousePosition[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 553b1a6c-c36d-4faa-a238-bb13573a75fc
+    m_ActionName: Gameplay/Mouse1[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 850831a0-27a9-44d6-aeb4-0f1241eca038
+    m_ActionName: Gameplay/Mouse2[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 667226d4-7e77-45b9-8d23-25acde617a64
+    m_ActionName: Gameplay/W[/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e39f4cad-7fc8-4e8d-96cd-85e1a1c8f4b3
+    m_ActionName: Gameplay/A[/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 61670744-2f12-432a-b724-1aa3ada8f633
+    m_ActionName: Gameplay/S[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 91d434c9-7eee-440c-bc17-461ad2062208
+    m_ActionName: Gameplay/D[/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a5f8710a-66a0-4431-a73b-c8fdccb6fca6
+    m_ActionName: Gameplay/Space[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e6b4fd50-89af-47c7-b7ed-3b69668374eb
+    m_ActionName: Gameplay/MouseDelta[/Mouse/delta,/Pen/delta]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: RobotUprising
@@ -518,7 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -563,6 +564,41 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &6157574455256571120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1270496326638907977}
+  m_Layer: 5
+  m_Name: GoodFunctionContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1270496326638907977
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6157574455256571120}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7070226362938648789}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1664.4, y: -555.65}
+  m_SizeDelta: {x: 502.4, y: 1043.9}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6587070134555446844
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,7 +805,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1132274037876065879}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

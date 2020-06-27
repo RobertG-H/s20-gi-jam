@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu (menuName = "RobotUprising/CodeBlock")]
 public class CodeBlock : ScriptableObject
 {
+    public bool containsBad;
     [System.Serializable]
     public struct line
     {

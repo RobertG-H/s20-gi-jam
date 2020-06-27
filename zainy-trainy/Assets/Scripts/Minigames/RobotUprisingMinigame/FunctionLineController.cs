@@ -34,7 +34,7 @@ public class FunctionLineController : MonoBehaviour
     }
     public void UpdatePlayerFunctionString(string newPlayerFunctionString)
     {
-        if(robotUprisingController.usedGoodCodeLines.Contains(playerFunctionString))
+        if(robotUprisingController.usedGoodFunctions.Contains(playerFunctionString))
         {
             robotUprisingController.ReleaseGoodCodeLIne(playerFunctionString);
         }
@@ -51,9 +51,9 @@ public class FunctionLineController : MonoBehaviour
 
     public void CheckGoodAndUnique()
     {
-        if(robotUprisingController.goodCodeLines.Contains(playerFunctionString))
+        if(robotUprisingController.goodFunctions.Contains(playerFunctionString))
         {
-            if(!robotUprisingController.usedGoodCodeLines.Contains(playerFunctionString))
+            if(!robotUprisingController.usedGoodFunctions.Contains(playerFunctionString))
             {
                 robotUprisingController.UseGoodCodeLine(playerFunctionString);
                 isBad = false;
@@ -76,10 +76,6 @@ public class FunctionLineController : MonoBehaviour
         if(isBad)
         {
             inputField.image.color = badColor;
-        }
-        else if(isSyntaxError)
-        {
-            inputField.image.color = Color.cyan;
         }
         else
         {
