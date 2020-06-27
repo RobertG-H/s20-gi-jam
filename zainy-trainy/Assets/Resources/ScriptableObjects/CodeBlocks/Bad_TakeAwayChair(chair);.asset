@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8146d029f4414f74fa43da97c2a11dae, type: 3}
-  m_Name: test
+  m_Name: Bad_TakeAwayChair(chair);
   m_EditorClassIdentifier: 
-  containsBad: 1
+  containsBad: 0
   lines:
-  - text: for(int i = 0; i < 5, i++){
+  - text: if(customer.isAboutToSit()){
     tabs: 0
     isFunction: 0
     isBad: 0
-  - text: DoBadStuff();
+  - text: TakeAwayChair(chair);
     tabs: 1
     isFunction: 1
-    isBad: 1
+    isBad: 0
   - text: '}'
     tabs: 0
     isFunction: 0

@@ -41,7 +41,7 @@ public class RobotUprising : MonoBehaviour
 	private float score;
 	private bool submitted = false;
 	
-	 
+	
     // Start is called before the first frame update
     void Start()
     {
@@ -121,13 +121,14 @@ public class RobotUprising : MonoBehaviour
 		System.Random random = new System.Random();
 		for(int i = 0; i < numToGenerate; i++)
 		{
-			int randomIndex;
-			do
-			{
-				randomIndex = random.Next(allGoodFunctions.Length);
-			}
-			while(usedIndices.Contains(randomIndex) && usedIndices.Count != allGoodFunctions.Length);
-			usedIndices.Add(randomIndex);
+			// int randomIndex;
+			// do
+			// {
+			// 	randomIndex = random.Next(allGoodFunctions.Length);
+			// }
+			// while(usedIndices.Contains(randomIndex) && usedIndices.Count != allGoodFunctions.Length);
+			int randomIndex = random.Next(allGoodFunctions.Length);
+			// usedIndices.Add(randomIndex);
 			goodFunctions.Add(((GoodFunction)allGoodFunctions[randomIndex]).function);
 		}
 	}
@@ -142,17 +143,19 @@ public class RobotUprising : MonoBehaviour
 		System.Random random = new System.Random();
 		while(currentNumberOfLines < maxLines && usedIndices.Count != allCodeBlocks.Length)
 		{
-			int randomIndex;
-			do
-			{
-				randomIndex = random.Next(allCodeBlocks.Length);
-			}
-			while(usedIndices.Contains(randomIndex) && usedIndices.Count != allCodeBlocks.Length);
+			// int randomIndex;
+			// do
+			// {
+			// 	randomIndex = random.Next(allCodeBlocks.Length);
+			// }
+			// while(usedIndices.Contains(randomIndex) && usedIndices.Count != allCodeBlocks.Length);
+			int randomIndex = random.Next(allCodeBlocks.Length);
 			usedIndices.Add(randomIndex);
 			CodeBlock newCodeBlock = (CodeBlock)allCodeBlocks[randomIndex];
 			if(currentNumberOfLines + newCodeBlock.lines.Count <= maxLines)
 			{
 				codeBlocks.Add(newCodeBlock);
+				currentNumberOfLines += newCodeBlock.lines.Count;
 				foreach(CodeBlock.line line in newCodeBlock.lines)
 				{
 					if(line.isFunction)

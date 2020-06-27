@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8146d029f4414f74fa43da97c2a11dae, type: 3}
-  m_Name: newTest
+  m_Name: Bad_TakeAwayFood();
   m_EditorClassIdentifier: 
+  containsBad: 1
   lines:
-  - text: if(customer.needsFood()){
+  - text: if(customer.isEating()){
     tabs: 0
     isFunction: 0
     isBad: 0
-  - text: GiveFood();
+  - text: TakeAwayFood();
     tabs: 1
     isFunction: 1
-    isBad: 0
+    isBad: 1
   - text: '}'
     tabs: 0
     isFunction: 0

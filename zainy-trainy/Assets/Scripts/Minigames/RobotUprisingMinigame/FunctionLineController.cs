@@ -8,12 +8,16 @@ public class FunctionLineController : MonoBehaviour
 {
     [HideInInspector]
     public RobotUprising robotUprisingController;
+    public Animator anim;
     public bool isBad;
-    public bool isSyntaxError;
+    public bool isSyntaxError = false;
+    public bool isDuplicate = false;
     public Color goodColor;
     public Color badColor;
     public TMP_InputField inputField;
     public string playerFunctionString;
+
+    
     private string defaultString;
     private bool defaultBad;
 
@@ -34,7 +38,7 @@ public class FunctionLineController : MonoBehaviour
     }
     public void UpdatePlayerFunctionString(string newPlayerFunctionString)
     {
-        if(robotUprisingController.usedGoodFunctions.Contains(playerFunctionString))
+        if(robotUprisingController.usedGoodFunctions.Contains(playerFunctionString) && !isDuplicate)
         {
             robotUprisingController.ReleaseGoodCodeLIne(playerFunctionString);
         }
@@ -57,16 +61,20 @@ public class FunctionLineController : MonoBehaviour
             {
                 robotUprisingController.UseGoodCodeLine(playerFunctionString);
                 isBad = false;
+                isDuplicate = false;
+                isSyntaxError = false;
             }
             else //Player already entered that string
             {
-                //Play some kind of animation
-                SetToDefaultString();
+                anim.Play("Shake");
+                isDuplicate = true;
+                robotUprisingController.GoToFunction(this);
             }
         }
         else
         {
-            //Play syntax error animation
+            anim.Play("Shake");
+            isSyntaxError = true;
             robotUprisingController.GoToFunction(this);
         }
     }
@@ -94,6 +102,7 @@ public class FunctionLineController : MonoBehaviour
         inputField.text = defaultString;
         playerFunctionString = defaultString;
         isBad = defaultBad;
+        isDuplicate = false;
         isSyntaxError = false;
     }
 
