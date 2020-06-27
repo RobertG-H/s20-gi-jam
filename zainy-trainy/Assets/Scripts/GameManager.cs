@@ -9,6 +9,7 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
+    public string PhotonPlayerPrefabName;
     bool runOnce = true;
     #region UNITY
     void Start()
@@ -77,7 +78,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     private void StartGame()
     {
         Vector3 spawnPos = new Vector3(PhotonNetwork.LocalPlayer.GetPlayerNumber(),0.5f,0);
-        PhotonNetwork.Instantiate("Player", spawnPos, Quaternion.identity);
+        PhotonNetwork.Instantiate(PhotonPlayerPrefabName, spawnPos, Quaternion.identity);
     }
     private bool CheckAllPlayerLoadedLevel()
     {
