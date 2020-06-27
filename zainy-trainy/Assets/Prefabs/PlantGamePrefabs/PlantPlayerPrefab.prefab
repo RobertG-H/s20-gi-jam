@@ -97,10 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab37d035d8d89748a15e7c6019317ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minGroundNormalY: 0.65
-  gravityModifier: 1
-  maxSpeed: 7
-  jumpTakeOffSpeed: 7
+  horSpeed: 7
+  jumpTakeOffSpeed: 10
+  jumptime: 1
 --- !u!50 &773081534819118243
 Rigidbody2D:
   serializedVersion: 4
@@ -116,12 +115,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2.4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &4792401789865913502
 MonoBehaviour:
   m_ObjectHideFlags: 0

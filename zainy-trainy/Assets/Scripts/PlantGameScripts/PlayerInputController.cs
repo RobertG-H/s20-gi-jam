@@ -38,6 +38,10 @@ public class PlayerInputController : MonoBehaviour
         {
             GetComponent<PlayerPlatformerController>().currentInputs.horizontal = -1;
         }
+        if (context.ReadValue<float>() == 0)
+        {
+            GetComponent<PlayerPlatformerController>().currentInputs.horizontal = 0;
+        }
     }
 
     public void OnSKey(InputAction.CallbackContext context)
@@ -51,6 +55,10 @@ public class PlayerInputController : MonoBehaviour
         if (context.ReadValue<float>() == 1)
         {
             GetComponent<PlayerPlatformerController>().currentInputs.horizontal = 1;
+        }
+        if (context.ReadValue<float>() == 0)
+        {
+            GetComponent<PlayerPlatformerController>().currentInputs.horizontal = 0;
         }
     }
 }
