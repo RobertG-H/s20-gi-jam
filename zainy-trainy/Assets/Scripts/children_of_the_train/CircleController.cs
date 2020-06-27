@@ -8,15 +8,17 @@ public class CircleController : MonoBehaviour
     public float activation_duration = 0.2f;
     public Color active_color = new Color(200, 0, 0);
     public Color inactive_color = new Color(255, 255, 255);
+    public char current_key;
+    public GameObject collider;
+    public TextMesh display_text;
 
     private SpriteRenderer sprite;
-    public GameObject collider;
 
     // Start is called before the first frame update
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
-        collider = transform.GetChild(0).gameObject;
+        ChangeKey();
     }
 
     // Update is called once per frame
@@ -25,15 +27,24 @@ public class CircleController : MonoBehaviour
         
     }
 
-    public void Activate()
+    public void ChangeKey()
     {
-        StartCoroutine(ActivationProcedure());
+        current_key = (char) Random.Range((int) 'a', (int) 'z');
+        display_text.text = current_key.ToString();
+
+    }
+
+    public void CheckInput(char input_key)
+    {
+        if (input_key == current_key)
+            StartCoroutine(ActivationProcedure());
     }
 
     private IEnumerator ActivationProcedure()
     {
         sprite.color = active_color;
         collider.active = true;
+        ChangeKey();
 
         yield return new WaitForSeconds(activation_duration);
 

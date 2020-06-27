@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public float speed;
+    public float defeat_pause_duration = 0.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,13 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        speed = speed * -1;
+        StartCoroutine(BecomeDefeated());
+    }
+
+    private IEnumerator BecomeDefeated()
+    {
+        speed = 0;
+        yield return new WaitForSeconds(defeat_pause_duration);
+        Destroy(gameObject);
     }
 }

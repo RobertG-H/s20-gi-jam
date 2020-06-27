@@ -34,10 +34,8 @@ public class TypingController : MonoBehaviour
     {
         if (text.Length > 0)
         {
-            Debug.Log(text);
-            if (text == "a") {
-                circles[0].Activate();
-            }
+            foreach (CircleController circle in circles)
+                circle.CheckInput(text[0]);
             input.text = "";
         }
     }
