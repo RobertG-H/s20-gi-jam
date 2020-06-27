@@ -21,6 +21,7 @@ public class RobotUprising : MonoBehaviour
 	private DemoModuleManager moduleManager;
 	private List<CodeBlock> codeBlocks;
 	private List<TextMeshProUGUI> goodFunctionUIElements;
+	private List<TextMeshProUGUI> codeLineUIElements;
 	public List<string> goodFunctions;
 	public List<string> usedGoodFunctions;
 	private List<FunctionLineController> lineFunctions;
@@ -47,6 +48,7 @@ public class RobotUprising : MonoBehaviour
     {
 		lineFunctions = new List<FunctionLineController>();
 		goodFunctionUIElements = new List<TextMeshProUGUI>();
+		codeLineUIElements = new List<TextMeshProUGUI>();
 		usedGoodFunctions = new List<string>();
 		codeYPos = initialCodeYPos;
 
@@ -89,6 +91,8 @@ public class RobotUprising : MonoBehaviour
 					Vector4 newMargin = codeLine.margin;
 					newMargin.x = 100 * line.tabs;
 					codeLine.margin = newMargin;
+
+					codeLineUIElements.Add(codeLine);
 				}
 				codeYPos -= codeYPosIncrease;
 			}
@@ -117,18 +121,18 @@ public class RobotUprising : MonoBehaviour
 	{
 		goodFunctions = new List<string>();
 		List<int> usedIndices = new List<int>();
-		object[] allGoodFunctions = Resources.LoadAll("ScriptableObjects/GoodFunctions");
+		object[] allGoodFunctions = Resources.LoadAll("ScriptableObjects/RobotUprising/GoodFunctions");
 		System.Random random = new System.Random();
 		for(int i = 0; i < numToGenerate; i++)
 		{
-			// int randomIndex;
-			// do
-			// {
-			// 	randomIndex = random.Next(allGoodFunctions.Length);
-			// }
-			// while(usedIndices.Contains(randomIndex) && usedIndices.Count != allGoodFunctions.Length);
-			int randomIndex = random.Next(allGoodFunctions.Length);
-			// usedIndices.Add(randomIndex);
+			int randomIndex;
+			do
+			{
+				randomIndex = random.Next(allGoodFunctions.Length);
+			}
+			while(usedIndices.Contains(randomIndex) && usedIndices.Count != allGoodFunctions.Length);
+			// int randomIndex = random.Next(allGoodFunctions.Length);
+			usedIndices.Add(randomIndex);
 			goodFunctions.Add(((GoodFunction)allGoodFunctions[randomIndex]).function);
 		}
 	}
@@ -138,18 +142,18 @@ public class RobotUprising : MonoBehaviour
 		codeBlocks = new List<CodeBlock>();
 		List<int> usedIndices = new List<int>();
 		int numFunctions = 0;
-		object[] allCodeBlocks = Resources.LoadAll("ScriptableObjects/CodeBlocks");
+		object[] allCodeBlocks = Resources.LoadAll("ScriptableObjects/RobotUprising/CodeBlocks");
 		int currentNumberOfLines = 0;
 		System.Random random = new System.Random();
 		while(currentNumberOfLines < maxLines && usedIndices.Count != allCodeBlocks.Length)
 		{
-			// int randomIndex;
-			// do
-			// {
-			// 	randomIndex = random.Next(allCodeBlocks.Length);
-			// }
-			// while(usedIndices.Contains(randomIndex) && usedIndices.Count != allCodeBlocks.Length);
-			int randomIndex = random.Next(allCodeBlocks.Length);
+			int randomIndex;
+			do
+			{
+				randomIndex = random.Next(allCodeBlocks.Length);
+			}
+			while(usedIndices.Contains(randomIndex) && usedIndices.Count != allCodeBlocks.Length);
+			// int randomIndex = random.Next(allCodeBlocks.Length);
 			usedIndices.Add(randomIndex);
 			CodeBlock newCodeBlock = (CodeBlock)allCodeBlocks[randomIndex];
 			if(currentNumberOfLines + newCodeBlock.lines.Count <= maxLines)
@@ -230,6 +234,7 @@ public class RobotUprising : MonoBehaviour
 		if(ctrlPressed && sPressed)
 		{
 			Submit();
+			Cleanup();
 		}
 	}
 	
@@ -246,6 +251,7 @@ public class RobotUprising : MonoBehaviour
 		if(ctrlPressed && sPressed)
 		{
 			Submit();
+			Cleanup();
 		}
 	}
 
@@ -291,5 +297,22 @@ public class RobotUprising : MonoBehaviour
 		usedGoodFunctions.Remove(line);
 		int goodFunctionIndex = goodFunctions.IndexOf(line);
 		goodFunctionUIElements[goodFunctionIndex].fontStyle = FontStyles.Normal;
+	}
+
+	public void Cleanup()
+	{
+		foreach(TextMeshProUGUI codeLine in codeLineUIElements)
+		{
+			Destroy(codeLine.gameObject);
+		}
+		foreach(TextMeshProUGUI goodFunction in goodFunctionUIElements)
+		{
+			Destroy(goodFunction.gameObject);
+		}
+		foreach(FunctionLineController lineFunc in lineFunctions)
+		{
+			Destroy(lineFunc.gameObject);
+		}
+		Start();
 	}
 }
