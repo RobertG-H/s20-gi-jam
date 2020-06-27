@@ -8,15 +8,15 @@
                 {
                     "name": "MousePosition",
                     "type": "Value",
-                    "id": "9d3ebd07-a73a-4bfa-b0bc-9721406c9b81",
+                    "id": "67be2c13-fe4c-4237-b8d5-3c84097b60a7",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 },
                 {
                     "name": "Mouse1",
-                    "type": "Button",
-                    "id": "d1a34376-6ee4-40af-a3fd-2f3c703d6a9f",
+                    "type": "Value",
+                    "id": "553b1a6c-c36d-4faa-a238-bb13573a75fc",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -24,7 +24,7 @@
                 {
                     "name": "Mouse2",
                     "type": "Button",
-                    "id": "130a49ea-4001-449f-953c-fac4f9f3ee1b",
+                    "id": "850831a0-27a9-44d6-aeb4-0f1241eca038",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -32,7 +32,7 @@
                 {
                     "name": "W",
                     "type": "Button",
-                    "id": "fede3ac6-7c45-4570-a920-4b00f0395e31",
+                    "id": "667226d4-7e77-45b9-8d23-25acde617a64",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -40,7 +40,7 @@
                 {
                     "name": "A",
                     "type": "Button",
-                    "id": "ec4fc66f-db47-4393-9641-900da72d8776",
+                    "id": "e39f4cad-7fc8-4e8d-96cd-85e1a1c8f4b3",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -48,7 +48,7 @@
                 {
                     "name": "S",
                     "type": "Button",
-                    "id": "fc1c6904-c458-4b90-b75e-929205bf580d",
+                    "id": "61670744-2f12-432a-b724-1aa3ada8f633",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -56,7 +56,7 @@
                 {
                     "name": "D",
                     "type": "Button",
-                    "id": "26fec906-dd64-4b0e-84cb-bf7f2be321bf",
+                    "id": "91d434c9-7eee-440c-bc17-461ad2062208",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -64,8 +64,16 @@
                 {
                     "name": "Space",
                     "type": "Button",
-                    "id": "d10ea8bc-68b7-4f02-a2c5-697155ebb497",
+                    "id": "a5f8710a-66a0-4431-a73b-c8fdccb6fca6",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MouseDelta",
+                    "type": "Value",
+                    "id": "e6b4fd50-89af-47c7-b7ed-3b69668374eb",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 }
@@ -73,8 +81,8 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "08c4cefe-801c-4a7e-8293-814f6947fb64",
-                    "path": "<Pointer>/position",
+                    "id": "fddc29be-64f3-48b9-a10b-c6e3829679a0",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
@@ -84,7 +92,7 @@
                 },
                 {
                     "name": "",
-                    "id": "6008fd70-92be-4c44-abd5-d732ead3090e",
+                    "id": "ab8657e2-28ab-4f9c-8640-7511461ed62f",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
@@ -95,7 +103,7 @@
                 },
                 {
                     "name": "",
-                    "id": "00d76c5b-ec64-47ce-9a3a-901cca4ce381",
+                    "id": "ff6fdb48-8bc0-4def-b447-dc81b8ae6236",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
@@ -106,7 +114,7 @@
                 },
                 {
                     "name": "",
-                    "id": "92333f5d-b289-4194-8e7e-750fd79386ac",
+                    "id": "8cb68401-01e3-4be1-86c0-042ef978d1bd",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -117,7 +125,7 @@
                 },
                 {
                     "name": "",
-                    "id": "ed812628-312a-4813-8449-f65e5100f579",
+                    "id": "82b01140-563e-42e2-abd2-f12fd561e4df",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -128,7 +136,7 @@
                 },
                 {
                     "name": "",
-                    "id": "864ad780-9197-4892-adb4-6ecd736559bd",
+                    "id": "bf805be8-5caa-4335-b8f6-667f90fc8338",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -139,7 +147,7 @@
                 },
                 {
                     "name": "",
-                    "id": "f344e861-e402-45a0-937f-ee6b54e7c584",
+                    "id": "57d7c5d0-a553-4047-9e28-9d64bb5ba50e",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -150,12 +158,23 @@
                 },
                 {
                     "name": "",
-                    "id": "86ccafee-b45c-48ed-a2ac-e760ee4323fc",
+                    "id": "d1a9ec7c-ec9d-4be7-90d5-ad13d0a44082",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Space",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3567447b-6998-4ac9-a243-6a0eedf7ddf8",
+                    "path": "<Pointer>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "MouseDelta",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
