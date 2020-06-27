@@ -21,7 +21,7 @@ MonoBehaviour:
   - text: TakeAwayFood();
     tabs: 1
     isFunction: 1
-    isBad: 1
+    isBad: 0
   - text: '}'
     tabs: 0
     isFunction: 0
