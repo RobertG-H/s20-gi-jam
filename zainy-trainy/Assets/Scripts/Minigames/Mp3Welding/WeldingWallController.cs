@@ -45,6 +45,13 @@ public class WeldingWallController : MonoBehaviour
         endLayerMask = 1 << LayerMask.NameToLayer("MP3EndPoint");
     }
 
+    private void OnEnable()
+    {
+        mousePosition = Vector2.zero;
+        mousePositions = new List<Vector2>();
+        gameState = states.FAILED;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -67,6 +74,7 @@ public class WeldingWallController : MonoBehaviour
         {
             Debug.Log("COMPLETE MP3 WELDING");
             gameState = states.WON;
+            RemoveLine();
             moduleManager.MinigameCompleted(1f);
         }
     }

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d926c8087bc9b05428529e02287b208c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moduleObject: {fileID: 0}
 --- !u!114 &4376384228652900428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,7 +84,18 @@ MonoBehaviour:
     m_ActionId: 850831a0-27a9-44d6-aeb4-0f1241eca038
     m_ActionName: Gameplay/Mouse2[/Mouse/rightButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 882009922}
+        m_MethodName: OnWKey
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 667226d4-7e77-45b9-8d23-25acde617a64
     m_ActionName: Gameplay/W[/Keyboard/w]
   - m_PersistentCalls:

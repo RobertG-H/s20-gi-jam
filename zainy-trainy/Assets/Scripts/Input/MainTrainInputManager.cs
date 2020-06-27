@@ -13,15 +13,18 @@ namespace MainTrain
 
     }
 
-    public class MainTrainInputManager : MonoBehaviour, IRegisterMainTrainInputs, IServiceProvider
+    public class MainTrainInputManager : MonoBehaviour, IRegisterMainTrainInputs, IServiceProvider, IRecieveCarBreakAlert, IGetScoresOnRepairComplete
     {
         private IAmAMainTrainPlayer player;
+        private GameObject playerToDisable;
+
+        [SerializeField]
+        GameObject moduleObject;
 
         public Inputs currentInputs;
 
         void Start()
         {
-
         }
 
         void Update()
@@ -32,17 +35,40 @@ namespace MainTrain
         void IServiceProvider.RegisterServices()
         {
             this.RegisterService<IRegisterMainTrainInputs>();
+            this.RegisterService<IRecieveCarBreakAlert>();
+            this.RegisterService<IGetScoresOnRepairComplete>();
         }
 
         void IRegisterMainTrainInputs.RegisterPlayer(MainTrainPlayerController p)
         {
             this.player = p;
+            playerToDisable = p.gameObject;
+        }
+
+        void IGetScoresOnRepairComplete.RepaireCompleted(ICanBreakdown traincar, IAmAMinigame completedGame, float score, int playerid)
+        {
+            print("FINISHED A GAME");
+            playerToDisable.SetActive(true);
+        }
+
+        void IRecieveCarBreakAlert.TraincarIsBroken(GameObject Traincar, ICanBreakdown traincar, IAmAMinigame minigame)
+        {
+            Debug.Log("i dont care");
+        }
+
+        void IRecieveCarBreakAlert.TraincarIsDamaged(GameObject Traincar, ICanBreakdown traincar, IAmAMinigame minigame)
+        {
+            Debug.Log("i dont care");
         }
 
         public void OnWKey(InputAction.CallbackContext context)
         {
             currentInputs.up = context.ReadValue<float>() == 1;
-
+            if(currentInputs.up)
+            {
+                moduleObject.GetComponent<IAmAMinigame>().OpenMinigame(1);
+                playerToDisable.SetActive(false);
+            }
         }
 
         public void OnAKey(InputAction.CallbackContext context)

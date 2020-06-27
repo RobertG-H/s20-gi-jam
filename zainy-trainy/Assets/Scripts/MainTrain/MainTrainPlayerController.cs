@@ -13,6 +13,7 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
     private Rigidbody2D rigidbody;
     private PhotonView photonView;
     public float speed;
+    public GameObject cam;
 
     void Awake()
     {
@@ -26,6 +27,10 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
         if (photonView.IsMine)
         {
             inputManager.RegisterPlayer(this);
+        }
+        else
+        {
+            cam.SetActive(false);
         }
     }
 
