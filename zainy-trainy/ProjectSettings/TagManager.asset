@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - inputmanager
+  - module
   layers:
   - Default
   - TransparentFX
@@ -33,8 +34,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Ground
+  - module
   - MP3EndPoint
   - MP3Wall
   - MP3StartPoint

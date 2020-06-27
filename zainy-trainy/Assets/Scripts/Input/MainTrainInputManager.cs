@@ -10,65 +10,34 @@ namespace MainTrain
         public bool right;
         public bool up;
         public bool down;
+        public bool space;
 
     }
 
-    public class MainTrainInputManager : MonoBehaviour, IRegisterMainTrainInputs, IServiceProvider, IRecieveCarBreakAlert, IGetScoresOnRepairComplete
+    public class MainTrainInputManager : MonoBehaviour, IRegisterMainTrainInputs, IServiceProvider
     {
         private IAmAMainTrainPlayer player;
-        private GameObject playerToDisable;
-
-        [SerializeField]
-        GameObject moduleObject;
 
         public Inputs currentInputs;
 
-        void Start()
-        {
-        }
-
         void Update()
         {
-            player.HandleInput(currentInputs);
+            if(player != null) player.HandleInput(currentInputs);
         }
 
         void IServiceProvider.RegisterServices()
         {
             this.RegisterService<IRegisterMainTrainInputs>();
-            this.RegisterService<IRecieveCarBreakAlert>();
-            this.RegisterService<IGetScoresOnRepairComplete>();
         }
 
         void IRegisterMainTrainInputs.RegisterPlayer(MainTrainPlayerController p)
         {
             this.player = p;
-            playerToDisable = p.gameObject;
-        }
-
-        void IGetScoresOnRepairComplete.RepaireCompleted(ICanBreakdown traincar, IAmAMinigame completedGame, float score, int playerid)
-        {
-            print("FINISHED A GAME");
-            playerToDisable.SetActive(true);
-        }
-
-        void IRecieveCarBreakAlert.TraincarIsBroken(GameObject Traincar, ICanBreakdown traincar, IAmAMinigame minigame)
-        {
-            Debug.Log("i dont care");
-        }
-
-        void IRecieveCarBreakAlert.TraincarIsDamaged(GameObject Traincar, ICanBreakdown traincar, IAmAMinigame minigame)
-        {
-            Debug.Log("i dont care");
         }
 
         public void OnWKey(InputAction.CallbackContext context)
         {
             currentInputs.up = context.ReadValue<float>() == 1;
-            if(currentInputs.up)
-            {
-                moduleObject.GetComponent<IAmAMinigame>().OpenMinigame(1);
-                playerToDisable.SetActive(false);
-            }
         }
 
         public void OnAKey(InputAction.CallbackContext context)
@@ -76,6 +45,7 @@ namespace MainTrain
             currentInputs.left = context.ReadValue<float>() == 1;
             // override opposite direction
             if (currentInputs.left) currentInputs.right = false;
+
         }
 
         public void OnSKey(InputAction.CallbackContext context)
@@ -89,6 +59,13 @@ namespace MainTrain
             currentInputs.right = context.ReadValue<float>() == 1;
             // override opposite direction
             if (currentInputs.right) currentInputs.left = false;
+
+        }
+
+        public void OnSpaceKey(InputAction.CallbackContext context)
+        {
+            currentInputs.space = context.ReadValueAsButton();
+            player.HandleInput(currentInputs);
         }
 
     }

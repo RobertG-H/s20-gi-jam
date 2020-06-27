@@ -2,51 +2,61 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOnRepairComplete, IServiceProvider
+public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOnRepairComplete, IAmAMinigameManager, IServiceProvider
 {
 
 	float currentscore = 0f;
 
 	[SerializeField]
-	GameObject playerToDisable;
+	GameObject controlsToDisable;
 
-	[SerializeField]
-	GameObject moduleObject;
-
+	IAmAMainTrainPlayer player;
 
 	void IServiceProvider.RegisterServices()
 	{
 		this.RegisterService<IRecieveCarBreakAlert>();
 		this.RegisterService<IGetScoresOnRepairComplete>();
+		this.RegisterService<IAmAMinigameManager>();
+
 	}
 
 	void IGetScoresOnRepairComplete.RepaireCompleted(ICanBreakdown traincar, IAmAMinigame completedGame, float score, int playerid)
 	{
 		currentscore += score * 100f;
-		print("Got here");
-		playerToDisable.SetActive(true);
+		print("Repairs Complete!");
+
+		controlsToDisable.SetActive(true);
+		player.EnableCamera();
 	}
 
 
 	void IRecieveCarBreakAlert.TraincarIsBroken(GameObject Traincar, ICanBreakdown traincar, IAmAMinigame minigame)
 	{
-		Debug.Log("i dont care");
+		print("TraincarIsBroken");
+
 	}
 
 	void IRecieveCarBreakAlert.TraincarIsDamaged(GameObject Traincar, ICanBreakdown traincar, IAmAMinigame minigame)
 	{
-		Debug.Log("i dont care");
+		print("TraincarIsDamaged");
+
 	}
 
-
-	void Update()
+	void IAmAMinigameManager.DisableControls()
 	{
+		controlsToDisable.SetActive(false);
+
 	}
 
-
-	public void EnterTheOneMinigame()
+	void IAmAMinigameManager.EnableControls()
 	{
-		moduleObject.GetComponent<IAmAMinigame>().OpenMinigame(1);
-		playerToDisable.SetActive(false);
+		controlsToDisable.SetActive(true);
+		player.EnableCamera();
+
+	}
+
+	void IAmAMinigameManager.RegisterPlayer(IAmAMainTrainPlayer p)
+	{
+		player = p;
 	}
 }

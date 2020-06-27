@@ -133,7 +133,18 @@ MonoBehaviour:
     m_ActionId: 91d434c9-7eee-440c-bc17-461ad2062208
     m_ActionName: Gameplay/D[/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 882009922}
+        m_MethodName: OnSpaceKey
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: a5f8710a-66a0-4431-a73b-c8fdccb6fca6
     m_ActionName: Gameplay/Space[/Keyboard/space]
   - m_PersistentCalls:
