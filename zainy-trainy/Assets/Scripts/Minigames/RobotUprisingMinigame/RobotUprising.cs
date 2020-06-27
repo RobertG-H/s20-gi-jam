@@ -10,6 +10,7 @@ public class RobotUprising : MonoBehaviour
 	//No scrolling
 	//Once a page is complete it goes to the next one
 	//Same # of good functions as total functions
+	public Camera gameCamera;
 	public GameObject functionLinePrefab;
 	public GameObject codeLinePrefab;
 	public GameObject goodFunctionPrefab;
@@ -22,7 +23,9 @@ public class RobotUprising : MonoBehaviour
 	private List<CodeBlock> codeBlocks;
 	private List<TextMeshProUGUI> goodFunctionUIElements;
 	private List<TextMeshProUGUI> codeLineUIElements;
+	[HideInInspector]
 	public List<string> goodFunctions;
+	[HideInInspector]
 	public List<string> usedGoodFunctions;
 	private List<FunctionLineController> lineFunctions;
 	
@@ -40,7 +43,7 @@ public class RobotUprising : MonoBehaviour
 
 	private bool ctrlPressed, sPressed;
 	private float score;
-	private bool submitted = false;
+	private bool submitted;
 	
 	
     // Start is called before the first frame update
@@ -51,6 +54,7 @@ public class RobotUprising : MonoBehaviour
 		codeLineUIElements = new List<TextMeshProUGUI>();
 		usedGoodFunctions = new List<string>();
 		codeYPos = initialCodeYPos;
+		submitted = false;
 
 		int numFunctions = GenerateCodeLines();
 		GenerateGoodFunctions(numFunctions);
@@ -234,7 +238,6 @@ public class RobotUprising : MonoBehaviour
 		if(ctrlPressed && sPressed)
 		{
 			Submit();
-			Cleanup();
 		}
 	}
 	
@@ -250,8 +253,7 @@ public class RobotUprising : MonoBehaviour
 		}
 		if(ctrlPressed && sPressed)
 		{
-			Submit();
-			Cleanup();
+			Submit();	
 		}
 	}
 
@@ -281,8 +283,15 @@ public class RobotUprising : MonoBehaviour
 			}
 			score = numberGood/(numberGood + numberBad);
 			Debug.Log(score);
-			// moduleManager.MinigameCompleted(score);
+			StartCoroutine("EndGame");
 		}
+	}
+
+	private IEnumerator EndGame()
+	{
+		yield return new WaitForSeconds(1.0f);
+		Cleanup();
+		moduleManager.MinigameCompleted(score);
 	}
 
 	public void UseGoodCodeLine(string line)

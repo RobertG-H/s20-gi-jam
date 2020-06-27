@@ -552,7 +552,7 @@ MonoBehaviour:
   isBad: 0
   isSyntaxError: 0
   isDuplicate: 0
-  goodColor: {r: 1, g: 1, b: 1, a: 1}
+  goodColor: {r: 0.44297957, g: 1, b: 0, a: 0.4627451}
   badColor: {r: 1, g: 0, b: 0, a: 1}
   inputField: {fileID: 9083507535734989063}
   playerFunctionString: 
