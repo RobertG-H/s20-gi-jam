@@ -35,9 +35,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - MP3EndPoint
+  - MP3Wall
+  - MP3StartPoint
   m_SortingLayers:
   - name: Default
     uniqueID: 0

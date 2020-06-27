@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IAmAMainTrainPlayer
 {
-    void HandleInput(Inputs currentInputs);
+    void HandleInput(MainTrain.Inputs currentInputs);
 }

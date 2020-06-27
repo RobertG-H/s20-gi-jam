@@ -34,7 +34,7 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
 
     }
 
-    void IAmAMainTrainPlayer.HandleInput(Inputs currentInputs)
+    void IAmAMainTrainPlayer.HandleInput(MainTrain.Inputs currentInputs)
     {
         if (!photonView.IsMine) return;
         if(currentInputs.left)
