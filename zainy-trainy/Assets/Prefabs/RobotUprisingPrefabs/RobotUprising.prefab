@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb986e10b7cb544493a86ea4fcf1134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameCamera: {fileID: 0}
   functionLinePrefab: {fileID: 0}
   codeLinePrefab: {fileID: 0}
   goodFunctionPrefab: {fileID: 0}

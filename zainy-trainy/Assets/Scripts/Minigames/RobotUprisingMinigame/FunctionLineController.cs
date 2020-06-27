@@ -106,6 +106,11 @@ public class FunctionLineController : MonoBehaviour
         isSyntaxError = false;
     }
 
+    public void PlayTypingSound()
+    {
+        if(robotUprisingController != null)
+            robotUprisingController.audioController.PlayType();
+    }
     void OnDestroy()
     {
         inputField.onDeselect.RemoveListener(UpdatePlayerFunctionString);

@@ -17,6 +17,7 @@ public class RobotUprising : MonoBehaviour
 	public RectTransform codeContainer;
 	public RectTransform goodFunctionsContainer;
 	public int maxLines = 12;
+	public RobotUprisingAudioController audioController;
 
 	[SerializeField]
 	private DemoModuleManager moduleManager;
@@ -118,8 +119,13 @@ public class RobotUprising : MonoBehaviour
 			goodFunctionUIElements.Add(goodFunctionInstance);
 			goodFunctionYPos -= goodFunctionYPosIncrease;
 		}
-		lineFunctions[currentLine].inputField.ActivateInputField();
+		StartTheGame();
     }
+
+	public void StartTheGame()
+	{
+		lineFunctions[0].inputField.ActivateInputField();
+	}
 
 	public void GenerateGoodFunctions(int numToGenerate)
 	{
