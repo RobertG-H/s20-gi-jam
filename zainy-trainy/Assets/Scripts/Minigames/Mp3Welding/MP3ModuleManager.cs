@@ -18,6 +18,8 @@ public class MP3ModuleManager : MonoBehaviour, IAmAMinigame
 	private GameObject traincarObject;
 	private ICanBreakdown traincarinterface;
 
+	public MiniGames currentMiniGame;
+
 	bool isBeingPlayed = false;
 	int playerPlaying = -1;
 
@@ -64,5 +66,10 @@ public class MP3ModuleManager : MonoBehaviour, IAmAMinigame
 	int IAmAMinigame.GetLastPlayerWhoPlayed()
 	{
 		return playerPlaying;
+	}
+
+	MiniGames IAmAMinigame.GetGameEnum()
+	{
+		return currentMiniGame;
 	}
 }

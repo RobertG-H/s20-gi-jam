@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
+public enum MiniGames { WELDING, ROBOT, TOASTER, HOSE};
+
 public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOnRepairComplete, IAmAMinigameManager, IServiceProvider
 {
 
@@ -88,7 +90,6 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 	[PunRPC]
 	void RPC_FixTrainCar(IAmAMinigame game, float amountToFix)
 	{
-
 		Debug.Log(photonView.IsMine);
 		game.fixTrainCar(amountToFix);
 	}

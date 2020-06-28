@@ -34,6 +34,8 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
     {
     }
 
+
+
     void Start()
     {
         this.ResolveDependencies();
@@ -94,16 +96,12 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
         {
             if (currentModuleTrigger != null)
             {
-                miniGameManager.DisableControls();
-                cam.SetActive(false);
-                currentModuleTrigger.EnterTheOneMinigame();
                 photonView.RPC("RPCStartingMiniGame", RpcTarget.AllViaServer);
             }
         }
 
         if (isFacingRight) transform.localScale = new Vector3(1, 1, 1);
         else transform.localScale = new Vector3(-1, 1, 1);
-
     }
 
     bool isGrounded()
@@ -132,6 +130,10 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
     [PunRPC]
     public void RPCLeavingMiniGame()
     {
+        miniGameManager.DisableControls();
+        cam.SetActive(false);
+        currentModuleTrigger.EnterTheOneMinigame();
+
         spriteRenderer.sprite = walkingSprite;
         rigidbody.velocity = new Vector2(0, 0);
         rigidbody.isKinematic = false;
