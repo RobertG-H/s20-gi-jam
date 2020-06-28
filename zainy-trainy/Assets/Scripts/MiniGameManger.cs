@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using System.Linq;
+using UnityEngine.UI;
 
 public enum MiniGames { WELDING, ROBOT, TOASTER, HOSE, CHILDREN, PLANT};
 
@@ -11,6 +12,8 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 	public float goalDistance;
 
 	public int amtBrokenCarsToLose;
+
+	public Text distanceText;
 
 	[HideInInspector]
 	public float currentDistance;
@@ -102,9 +105,15 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 
 	void Update()
 	{
+
 		if (currentDistance <= 0)
 		{
 			//EndGame(true);
+		}
+		else
+		{
+			currentDistance -= currentDistance * Time.deltaTime;
+			distanceText.text = string.Format("Distance: {0}", currentDistance.ToString());
 		}
 		if (GetTotalBrokenCars() >= amtBrokenCarsToLose)
 		{
