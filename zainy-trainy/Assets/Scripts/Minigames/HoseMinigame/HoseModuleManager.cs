@@ -15,6 +15,9 @@ public class HoseModuleManager : MonoBehaviour, IAmAMinigame
 	private GameObject traincarObject;
 	private ICanBreakdown traincarinterface;
 
+	public MiniGames currentMiniGame;
+
+
 	bool isBeingPlayed = false;
 	int playerPlaying = -1;
 
@@ -62,5 +65,10 @@ public class HoseModuleManager : MonoBehaviour, IAmAMinigame
 	void IAmAMinigame.fixTrainCar(float amountToFix)
 	{
 		traincarinterface.AddDamage(-amountToFix);
+	}
+
+	MiniGames IAmAMinigame.GetGameEnum()
+	{
+		return currentMiniGame;
 	}
 }
