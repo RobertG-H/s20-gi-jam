@@ -60,9 +60,6 @@ public static class IOCContainer
 	}
 
 
-
-
-
 	private static bool IsRegistered(Type t, string key)
 	{
 		if(registeredProviders.ContainsKey(t))
