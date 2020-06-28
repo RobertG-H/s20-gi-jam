@@ -720,7 +720,7 @@ MonoBehaviour:
   soundEffects:
     type:
       audioClip: {fileID: 8300000, guid: c0cf9cf1c56e0ff4a8c7f6866755355b, type: 3}
-      volume: 0.5
+      volume: 0.2
       volumeVariation: 0.05
       pitch: 1
       pitchVariation: 0.05

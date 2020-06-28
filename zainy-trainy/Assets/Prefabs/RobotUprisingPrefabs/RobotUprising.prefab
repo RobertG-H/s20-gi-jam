@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 71859863870694399}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8048376510594480046}
   - {fileID: 3633444882315387031}
@@ -63,6 +63,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RobotUprisingTrainCar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2428289815845072876, guid: 6e8c717fadfe3a94ea916452f3120305,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 3390784089823987167, guid: 6e8c717fadfe3a94ea916452f3120305,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 3390784089823987167, guid: 6e8c717fadfe3a94ea916452f3120305,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359951400811691103, guid: 6e8c717fadfe3a94ea916452f3120305,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359951400811691103, guid: 6e8c717fadfe3a94ea916452f3120305,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359951400811691103, guid: 6e8c717fadfe3a94ea916452f3120305,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.485
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359951400811691103, guid: 6e8c717fadfe3a94ea916452f3120305,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.485
       objectReference: {fileID: 0}
     - target: {fileID: 6444762148623488892, guid: 6e8c717fadfe3a94ea916452f3120305,
         type: 3}
