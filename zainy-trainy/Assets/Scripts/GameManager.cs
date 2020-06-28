@@ -8,6 +8,7 @@ using Photon.Pun.UtilityScripts;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using System;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -90,6 +91,16 @@ public class GameManager : MonoBehaviourPunCallbacks
     
     }
 
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        SceneManager.LoadScene("Lobby");
+    }
+
+    public override void OnLeftRoom()
+    {
+        PhotonNetwork.Disconnect();
+    }
+
     #endregion
 
 
@@ -126,7 +137,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             Debug.Log("You lost...");
         }
-        PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.LocalPlayer);
         PhotonNetwork.LeaveRoom();
     }
 
