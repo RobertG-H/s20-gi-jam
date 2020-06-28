@@ -26,6 +26,7 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 
 	Dictionary<MiniGames, bool> isTrainCarBroken = new Dictionary<MiniGames, bool>();
 
+	bool gameIsOver = false;
 
 	void IServiceProvider.RegisterServices()
 	{
@@ -107,6 +108,8 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 		}
 		if (GetTotalBrokenCars() >= amtBrokenCarsToLose)
 		{
+			if (gameIsOver) return;
+			gameIsOver = true;
 			GameManager.Instance.EndGame(false, currentDistance);
 		}
 	}

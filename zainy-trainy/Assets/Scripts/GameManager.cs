@@ -93,6 +93,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public override void OnDisconnected(DisconnectCause cause)
     {
+
         SceneManager.LoadScene("Lobby");
     }
 
@@ -137,6 +138,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             Debug.Log("You lost...");
         }
+        PhotonNetwork.DestroyAll();
         PhotonNetwork.LeaveRoom();
     }
 

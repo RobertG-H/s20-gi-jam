@@ -43,6 +43,8 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (photonView.IsMine)
         {
+            Debug.Log("Attemtping to register Player");
+
             inputManager.RegisterPlayer(this);
             miniGameManager.RegisterPlayer(this);
         }

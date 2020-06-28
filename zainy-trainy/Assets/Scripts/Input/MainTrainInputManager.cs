@@ -33,6 +33,7 @@ namespace MainTrain
         void IRegisterMainTrainInputs.RegisterPlayer(MainTrainPlayerController p)
         {
             this.player = p;
+            Debug.Log("Registered Player");
         }
 
         public void OnWKey(InputAction.CallbackContext context)
