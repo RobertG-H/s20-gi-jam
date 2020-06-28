@@ -8,6 +8,9 @@ public class CottManager : MonoBehaviour
     public int remaining_enemies;
     public GameObject input;
     public GameObject gloat;
+    public DemoModuleManager mod_manager;
+
+    private float gloat_duration = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +46,7 @@ public class CottManager : MonoBehaviour
 
     public void WinGame()
     {
-        Debug.Log("Win Game");
+        mod_manager.MinigameCompleted(1);
     }
 
     public void LoseGame()
@@ -51,9 +54,16 @@ public class CottManager : MonoBehaviour
         if (input.active) // First game over
         {
             spawns_remaining = 0;
-            gloat.active = true;
             input.active = false;
-            Debug.Log("Lose Game");
+            StartCoroutine(LossProcedure());
         }
     }
+
+    private IEnumerator LossProcedure()
+    {
+        gloat.active = true;
+        yield return new WaitForSeconds(gloat_duration);
+        mod_manager.MinigameCompleted(0);
+    }
+
 }
