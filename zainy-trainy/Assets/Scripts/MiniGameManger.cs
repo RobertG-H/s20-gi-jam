@@ -32,9 +32,10 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 
 		print("Repairs Complete!");
 		currentscore += score * 100f;
-		//photonView.RPC("RPC_FixTrainCar", RpcTarget.AllViaServer , completedGame, -score);
 		controlsToDisable.SetActive(true);
 		player.EnableCamera();
+		// Send request to GameManager to fix all clients traincar
+		GameManager.Instance.
 	}
 
 
@@ -87,10 +88,4 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 		controlsToDisable = GameObject.FindWithTag("inputmanager");
 	}
 
-	[PunRPC]
-	void RPC_FixTrainCar(IAmAMinigame game, float amountToFix)
-	{
-		Debug.Log(photonView.IsMine);
-		game.fixTrainCar(amountToFix);
-	}
 }

@@ -13,13 +13,15 @@ public class GameManager : MonoBehaviourPunCallbacks
     public string PhotonPlayerPrefabName;
     public string MiniGameManagerPrefabName;
 
-    //public static GameManager Instance {get; private set;} //Singleton if we need it
+    public static GameManager Instance {get; private set;} //Singleton if we need it
+
+    
 
     bool runOnce = true;
     #region UNITY
     private void Awake()
     {
-        //if (Instance == null) { Instance = this; } else { Debug.Log("Warning: multiple " + this + " in scene!"); }
+        if (Instance == null) { Instance = this; } else { Debug.Log("Warning: multiple " + this + " in scene!"); }
         PhotonNetwork.Instantiate(MiniGameManagerPrefabName, Vector3.zero, Quaternion.identity);
     }
     void Start()
@@ -125,6 +127,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     private void OnCountdownTimerIsExpired()
     {
         StartGame();
+    }
+
+    // Sync fixing of traincars
+
+    [PunRPC]
+    void RPC_FixTrainCar(IAmAMinigame game, float amountToFix)
+    { 
+        game.fixTrainCar(amountToFix);
     }
 
 }
