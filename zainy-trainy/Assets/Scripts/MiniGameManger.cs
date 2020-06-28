@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using System.Linq;
+using UnityEngine.UI;
 
 public enum MiniGames { WELDING, ROBOT, TOASTER, HOSE, CHILDREN, PLANT};
 
@@ -11,6 +12,14 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 	public float goalDistance;
 
 	public int amtBrokenCarsToLose;
+
+	public Text distanceText;
+
+	public GameObject winText;
+
+	public GameObject loseText;
+
+	private IEnumerator coroutine;
 
 	[HideInInspector]
 	public float currentDistance;
@@ -85,6 +94,10 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 	{
 		photonView = GetComponent<PhotonView>();
 		currentDistance = goalDistance;
+		winText.SetActive(false);
+
+		loseText.SetActive(false);
+
 
 	}
 
@@ -102,15 +115,35 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 
 	void Update()
 	{
+
 		if (currentDistance <= 0)
 		{
-			//EndGame(true);
+			if (gameIsOver) return;
+			winText.SetActive(true);
+
+			gameIsOver = true;
+
+			coroutine = EndGame(5.0f, true);
+			StartCoroutine(coroutine);
+
+		}
+		else
+		{
+			if (gameIsOver) return;
+
+			currentDistance -=  8f * Time.deltaTime;
+			distanceText.text = string.Format("Distance: {0}km", ((int)currentDistance).ToString());
 		}
 		if (GetTotalBrokenCars() >= amtBrokenCarsToLose)
 		{
 			if (gameIsOver) return;
+			loseText.SetActive(true);
+
 			gameIsOver = true;
-			GameManager.Instance.EndGame(false, currentDistance);
+
+			coroutine = EndGame(5.0f, false);
+			StartCoroutine(coroutine);
+
 		}
 	}
 
@@ -123,6 +156,15 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 		}
 		Debug.Log(string.Format("Total broken cars: {0}", count));
 		return count;
+	}
+
+	private IEnumerator EndGame(float waitTime, bool didWin)
+	{
+		while (true)
+		{
+			yield return new WaitForSeconds(waitTime);
+			GameManager.Instance.EndGame(didWin, currentDistance);
+		}
 	}
 
 	#region PUNRPC
