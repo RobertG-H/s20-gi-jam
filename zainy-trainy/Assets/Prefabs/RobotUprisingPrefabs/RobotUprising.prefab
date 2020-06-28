@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameToEnable: {fileID: 8484363156944555987}
   traincarObject: {fileID: 1745996549419472996}
+  currentMiniGame: 1
 --- !u!1001 &1589908205245803348
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64,10 +65,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: RobotUprisingTrainCar
       objectReference: {fileID: 0}
+    - target: {fileID: 1613931907321285830, guid: 6e8c717fadfe3a94ea916452f3120305,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.27659702
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613931907321285830, guid: 6e8c717fadfe3a94ea916452f3120305,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 2.1043794
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613931907321285830, guid: 6e8c717fadfe3a94ea916452f3120305,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 8.3155155
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613931907321285830, guid: 6e8c717fadfe3a94ea916452f3120305,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.7977195
+      objectReference: {fileID: 0}
     - target: {fileID: 2428289815845072876, guid: 6e8c717fadfe3a94ea916452f3120305,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 5.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 2530719105098129323, guid: 6e8c717fadfe3a94ea916452f3120305,
+        type: 3}
+      propertyPath: damagePerSecond
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3390784089823987167, guid: 6e8c717fadfe3a94ea916452f3120305,
         type: 3}

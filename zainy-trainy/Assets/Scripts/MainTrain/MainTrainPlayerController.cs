@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
+
 
 public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
 {
@@ -28,13 +30,9 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
     [HideInInspector]
     public ModuleTrigger currentModuleTrigger;
 
+    private int currentGame;
+
     bool isFacingRight = true;
-
-    void Awake()
-    {
-    }
-
-
 
     void Start()
     {
@@ -53,7 +51,7 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
             cam.SetActive(false);
         }
         spriteRenderer.sprite = walkingSprite;
-
+        currentGame = -1;
     }
 
     void Update()
@@ -65,6 +63,12 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
     void IAmAMainTrainPlayer.EnableCamera()
     {
         cam.SetActive(true);
+
+        // Inform room that player is no longer playing the minigame
+        Hashtable currentProps = PhotonNetwork.CurrentRoom.CustomProperties;
+        currentProps[currentGame.ToString()] = false;
+        PhotonNetwork.CurrentRoom.SetCustomProperties(currentProps);
+
         photonView.RPC("RPCLeavingMiniGame", RpcTarget.AllViaServer);
     }
 
@@ -96,7 +100,19 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
         {
             if (currentModuleTrigger != null)
             {
+                // Check if another player is playing the mini game
+                currentGame = (int)currentModuleTrigger.GetGameEnum();
+                if ((bool)PhotonNetwork.CurrentRoom.CustomProperties[currentGame.ToString()]) return;
+
+                // Inform room that player is playing the current Minigame
+                Hashtable currentProps = PhotonNetwork.CurrentRoom.CustomProperties;
+                currentProps[currentGame.ToString()] = true;
+                PhotonNetwork.CurrentRoom.SetCustomProperties(currentProps);
+
                 photonView.RPC("RPCStartingMiniGame", RpcTarget.AllViaServer);
+                miniGameManager.DisableControls();
+                cam.SetActive(false);
+                currentModuleTrigger.EnterTheOneMinigame();
             }
         }
 
@@ -130,15 +146,9 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
     [PunRPC]
     public void RPCLeavingMiniGame()
     {
-        miniGameManager.DisableControls();
-        cam.SetActive(false);
-        currentModuleTrigger.EnterTheOneMinigame();
-
         spriteRenderer.sprite = walkingSprite;
         rigidbody.velocity = new Vector2(0, 0);
         rigidbody.isKinematic = false;
     }
-
-
 
 }

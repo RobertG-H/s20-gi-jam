@@ -6,15 +6,20 @@ using Photon.Pun;
 using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
+using System;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
     public string PhotonPlayerPrefabName;
     public string MiniGameManagerPrefabName;
+
+    //public static GameManager Instance {get; private set;} //Singleton if we need it
+
     bool runOnce = true;
     #region UNITY
     private void Awake()
     {
+        //if (Instance == null) { Instance = this; } else { Debug.Log("Warning: multiple " + this + " in scene!"); }
         PhotonNetwork.Instantiate(MiniGameManagerPrefabName, Vector3.zero, Quaternion.identity);
     }
     void Start()
@@ -84,6 +89,17 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         Vector3 spawnPos = new Vector3(PhotonNetwork.LocalPlayer.GetPlayerNumber(),0.5f,0);
         PhotonNetwork.Instantiate(PhotonPlayerPrefabName, spawnPos, Quaternion.identity);
+
+        if (PhotonNetwork.IsMasterClient) // Setup props to track if a minigame is being played
+        {
+            Hashtable roomProps = new Hashtable();
+            foreach (int i in (int[])Enum.GetValues(typeof(MiniGames)))
+            {
+                roomProps.Add(i.ToString(), false);
+                Debug.Log(i);
+            }
+            PhotonNetwork.CurrentRoom.SetCustomProperties(roomProps);
+        }
 
     }
     private bool CheckAllPlayerLoadedLevel()
