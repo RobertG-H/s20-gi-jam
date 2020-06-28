@@ -108,11 +108,13 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 
 		if (currentDistance <= 0)
 		{
-			//EndGame(true);
+			if (gameIsOver) return;
+			gameIsOver = true;
+			GameManager.Instance.EndGame(true, 0);
 		}
 		else
 		{
-			currentDistance -= currentDistance * Time.deltaTime;
+			currentDistance -= 20.0f * Time.deltaTime;
 			distanceText.text = string.Format("Distance: {0}", currentDistance.ToString());
 		}
 		if (GetTotalBrokenCars() >= amtBrokenCarsToLose)
