@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
+
 
 public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
 {
@@ -28,15 +30,14 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
     [HideInInspector]
     public ModuleTrigger currentModuleTrigger;
 
-    bool isFacingRight = true;
+    private int currentGame;
 
-    void Awake()
-    {
-        this.ResolveDependencies();
-    }
+    bool isFacingRight = true;
 
     void Start()
     {
+        this.ResolveDependencies();
+
         rigidbody = GetComponent<Rigidbody2D>();
         photonView = GetComponent<PhotonView>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -50,6 +51,7 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
             cam.SetActive(false);
         }
         spriteRenderer.sprite = walkingSprite;
+        currentGame = -1;
     }
 
     void Update()
@@ -61,7 +63,13 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
     void IAmAMainTrainPlayer.EnableCamera()
     {
         cam.SetActive(true);
-        spriteRenderer.sprite = walkingSprite;
+
+        // Inform room that player is no longer playing the minigame
+        Hashtable currentProps = PhotonNetwork.CurrentRoom.CustomProperties;
+        currentProps[currentGame.ToString()] = false;
+        PhotonNetwork.CurrentRoom.SetCustomProperties(currentProps);
+
+        photonView.RPC("RPCLeavingMiniGame", RpcTarget.AllViaServer);
     }
 
     void IAmAMainTrainPlayer.HandleInput(MainTrain.Inputs currentInputs)
@@ -92,16 +100,24 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
         {
             if (currentModuleTrigger != null)
             {
+                // Check if another player is playing the mini game
+                currentGame = (int)currentModuleTrigger.GetGameEnum();
+                if ((bool)PhotonNetwork.CurrentRoom.CustomProperties[currentGame.ToString()]) return;
+
+                // Inform room that player is playing the current Minigame
+                Hashtable currentProps = PhotonNetwork.CurrentRoom.CustomProperties;
+                currentProps[currentGame.ToString()] = true;
+                PhotonNetwork.CurrentRoom.SetCustomProperties(currentProps);
+
+                photonView.RPC("RPCStartingMiniGame", RpcTarget.AllViaServer);
                 miniGameManager.DisableControls();
                 cam.SetActive(false);
                 currentModuleTrigger.EnterTheOneMinigame();
-                spriteRenderer.sprite = fixingSprite;
             }
         }
 
         if (isFacingRight) transform.localScale = new Vector3(1, 1, 1);
         else transform.localScale = new Vector3(-1, 1, 1);
-
     }
 
     bool isGrounded()
@@ -119,5 +135,20 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
         return false;
     }
 
+    [PunRPC]
+    public void RPCStartingMiniGame()
+    {
+        spriteRenderer.sprite = fixingSprite;
+        rigidbody.velocity = new Vector2(0, 0);
+        rigidbody.isKinematic = true;
+    }
+
+    [PunRPC]
+    public void RPCLeavingMiniGame()
+    {
+        spriteRenderer.sprite = walkingSprite;
+        rigidbody.velocity = new Vector2(0, 0);
+        rigidbody.isKinematic = false;
+    }
 
 }

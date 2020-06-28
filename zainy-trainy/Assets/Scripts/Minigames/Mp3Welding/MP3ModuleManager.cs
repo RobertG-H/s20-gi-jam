@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+
 
 public class MP3ModuleManager : MonoBehaviour, IAmAMinigame
 {
@@ -14,6 +17,8 @@ public class MP3ModuleManager : MonoBehaviour, IAmAMinigame
 	[SerializeField]
 	private GameObject traincarObject;
 	private ICanBreakdown traincarinterface;
+
+	public MiniGames currentMiniGame;
 
 	bool isBeingPlayed = false;
 	int playerPlaying = -1;
@@ -43,7 +48,7 @@ public class MP3ModuleManager : MonoBehaviour, IAmAMinigame
 
 	void IAmAMinigame.fixTrainCar(float amountToFix)
 	{
-		traincarinterface.AddDamage(amountToFix);
+		traincarinterface.AddDamage(-amountToFix);
 	}
 
 	bool IAmAMinigame.GetIsMinigameCurrentlyRunning()
@@ -61,5 +66,10 @@ public class MP3ModuleManager : MonoBehaviour, IAmAMinigame
 	int IAmAMinigame.GetLastPlayerWhoPlayed()
 	{
 		return playerPlaying;
+	}
+
+	MiniGames IAmAMinigame.GetGameEnum()
+	{
+		return currentMiniGame;
 	}
 }

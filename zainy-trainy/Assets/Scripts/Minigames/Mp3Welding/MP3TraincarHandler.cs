@@ -16,6 +16,8 @@ public class MP3TraincarHandler : MonoBehaviour, ICanBreakdown
 
 	void ICanBreakdown.AddDamage(float amountOfDamage)
 	{
+		Debug.Log(string.Format("Adding damage to mp3 traincar {0}", amountOfDamage));
+
 		currentHealth -= amountOfDamage;
 	}
 
