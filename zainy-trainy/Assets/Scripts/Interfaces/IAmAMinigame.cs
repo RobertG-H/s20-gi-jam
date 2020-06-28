@@ -9,4 +9,6 @@ public interface IAmAMinigame
 	int GetLastPlayerWhoPlayed();
 
 	void fixTrainCar(float amountToFix);
+
+	MiniGames GetGameEnum();
 }

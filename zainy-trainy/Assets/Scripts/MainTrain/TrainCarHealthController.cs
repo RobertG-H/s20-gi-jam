@@ -18,7 +18,6 @@ public class TrainCarHealthController : MonoBehaviour
     public void UpdateStatusColor(Color color)
     {
         statusSprite.color = color;
-        Debug.Log("UPDAITNF AIOSHF'OASF");
     }
 
     public void ShowBroken()

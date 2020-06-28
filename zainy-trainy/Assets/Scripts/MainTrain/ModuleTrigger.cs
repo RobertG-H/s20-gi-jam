@@ -10,4 +10,9 @@ public class ModuleTrigger : MonoBehaviour
     {
         moduleObject.GetComponent<IAmAMinigame>().OpenMinigame(1);
     }
+
+    public MiniGames GetGameEnum()
+    {
+        return moduleObject.GetComponent<IAmAMinigame>().GetGameEnum();
+    }
 }

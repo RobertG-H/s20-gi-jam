@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameToEnable: {fileID: 4235043881381014789}
   traincarObject: {fileID: 669756758607100907}
+  currentMiniGame: 2
 --- !u!1001 &4502451028056928432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72,12 +73,12 @@ PrefabInstance:
     - target: {fileID: 2859085533898316744, guid: f2c7f90f13986c14796e78a3481e3a25,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -322
       objectReference: {fileID: 0}
     - target: {fileID: 2859085533898316744, guid: f2c7f90f13986c14796e78a3481e3a25,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -6969
       objectReference: {fileID: 0}
     - target: {fileID: 2859085533898316744, guid: f2c7f90f13986c14796e78a3481e3a25,
         type: 3}
@@ -205,6 +206,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5452465768046373109, guid: bc51b5a7609252643926062b3d446272,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452465768046373109, guid: bc51b5a7609252643926062b3d446272,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452465768046373109, guid: bc51b5a7609252643926062b3d446272,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452465768046373109, guid: bc51b5a7609252643926062b3d446272,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.42
+      objectReference: {fileID: 0}
     - target: {fileID: 5666659804577492344, guid: bc51b5a7609252643926062b3d446272,
         type: 3}
       propertyPath: m_Name
@@ -215,10 +236,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7174679530679517667, guid: bc51b5a7609252643926062b3d446272,
+        type: 3}
+      propertyPath: damagePerSecond
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8157015068962372213, guid: bc51b5a7609252643926062b3d446272,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.89
+      value: 3.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8157015068962372213, guid: bc51b5a7609252643926062b3d446272,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.68
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc51b5a7609252643926062b3d446272, type: 3}
