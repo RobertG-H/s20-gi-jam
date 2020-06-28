@@ -19,7 +19,7 @@ public class FunctionLineController : MonoBehaviour
 
     
     private string defaultString;
-    private bool defaultBad;
+    public bool defaultBad;
 
     void Awake()
     {
