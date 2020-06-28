@@ -35,12 +35,16 @@ public class MP3ModuleManager : MonoBehaviour, IAmAMinigame
 
 	public void MinigameCompleted(float score)
 	{
-		traincarinterface.AddDamage(-score);
+		//traincarinterface.AddDamage(-score);
 		isBeingPlayed = false;
 		minigameToEnable.SetActive(false);
 		scoreReciever.RepaireCompleted(traincarinterface, this, score, playerPlaying);
 	}
 
+	void IAmAMinigame.fixTrainCar(float amountToFix)
+	{
+		traincarinterface.AddDamage(amountToFix);
+	}
 
 	bool IAmAMinigame.GetIsMinigameCurrentlyRunning()
 	{
