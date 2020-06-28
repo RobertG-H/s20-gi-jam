@@ -69,9 +69,7 @@ public class PlayerPlatformerController : MonoBehaviour
         {
             if (col.GetComponent<BugScript>().size<=size)
             {
-                Destroy(col.gameObject);
-
-                if (size <= 9)
+                if (size <= 15)
                 {
 
                     size += col.GetComponent<BugScript>().size/4f;
@@ -86,7 +84,9 @@ public class PlayerPlatformerController : MonoBehaviour
                     }
                    
                 }
-                
+                gameObject.GetComponent<PlantGameAudioManager>().playGulpSound();
+                Destroy(col.gameObject);
+
             }
             else
             {
@@ -104,6 +104,14 @@ public class PlayerPlatformerController : MonoBehaviour
 
         }
 
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "LeafCollider")
+        {
+            
+        }
     }
 
     void OnCollisionStay2D(Collision2D col)
@@ -137,9 +145,11 @@ public class PlayerPlatformerController : MonoBehaviour
         if (currentInputs.jumping && velocity.y <= 0.1f)
         {
             velocity.y = jumpTakeOffSpeed;
+            gameObject.GetComponent<PlantGameAudioManager>().playJumpSound();
             isJumping = true;
             jumptimer = jumptime;
             
+
         }
         else if (currentInputs.jumping && isJumping)
         {

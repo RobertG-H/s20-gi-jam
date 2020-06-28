@@ -32,7 +32,6 @@ public class BugScript : MonoBehaviour
         Vector3 scaler = transform.localScale;
         scaler *= size / 5f;
         transform.localScale = scaler;
-        Debug.Log(this.size);
     }
 
     // Update is called once per frame
