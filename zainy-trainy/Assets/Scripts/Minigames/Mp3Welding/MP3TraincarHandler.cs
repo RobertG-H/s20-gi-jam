@@ -7,6 +7,12 @@ public class MP3TraincarHandler : MonoBehaviour, ICanBreakdown
 	[SerializeField]
 	private float currentHealth = 1f;
 
+	[SerializeField]
+	private float damagePerSecond;
+
+	TrainCarHealthController healthController;
+
+
 
 	void ICanBreakdown.AddDamage(float amountOfDamage)
 	{
@@ -20,13 +26,31 @@ public class MP3TraincarHandler : MonoBehaviour, ICanBreakdown
 
 	void Awake()
     {
+		healthController = GetComponentInChildren<TrainCarHealthController>();
 
-    }
+	}
 
-    // Update is called once per frame
-    void Update()
+	// Update is called once per frame
+	void Update()
     {
-		currentHealth = Mathf.Clamp01(currentHealth-Time.deltaTime * 0.1f);
+		UpdateHealth();
 
-    }
+	}
+
+	public void UpdateHealth()
+	{
+		currentHealth = Mathf.Clamp01(currentHealth - Time.deltaTime * damagePerSecond);
+		if (healthController != null)
+		{
+			if (currentHealth <= 0) healthController.ShowBroken();
+			else healthController.ShowFunctional();
+			Color darkRed = new Color(0.4f, 0.05f, 0.05f);
+			Color newColor = Color.Lerp(Color.green, darkRed, Mathf.Pow(1 - currentHealth, 4f));
+			healthController.UpdateStatusColor(newColor);
+		}
+		else
+		{
+			Debug.Log("No health controller on train car...");
+		}
+	}
 }

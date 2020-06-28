@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d926c8087bc9b05428529e02287b208c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moduleObject: {fileID: 0}
 --- !u!114 &4376384228652900428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +150,26 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: e6b4fd50-89af-47c7-b7ed-3b69668374eb
     m_ActionName: Gameplay/MouseDelta[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d181d9f8-36bd-44e0-9d44-50a0f698c1a1
+    m_ActionName: RobotUprising/Enter[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 247b0508-8b76-46c4-b189-2029ec980551
+    m_ActionName: RobotUprising/Down[/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 409cdd3a-1d4c-4ea9-987a-a2ebb1b6c5f9
+    m_ActionName: RobotUprising/Up[/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 365bcb37-fc94-4ee9-86c1-475e72b28b5c
+    m_ActionName: RobotUprising/Ctrl[/Keyboard/ctrl]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0780dd00-1bbf-4f6f-92b5-072f4fff8aa6
+    m_ActionName: RobotUprising/S[/Keyboard/s]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

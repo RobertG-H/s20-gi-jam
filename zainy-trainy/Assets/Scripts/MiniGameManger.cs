@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOnRepairComplete, IAmAMinigameManager, IServiceProvider
 {
 
 	float currentscore = 0f;
+
+	PhotonView photonView;
 
 	[SerializeField]
 	GameObject controlsToDisable;
@@ -22,8 +25,11 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 
 	void IGetScoresOnRepairComplete.RepaireCompleted(ICanBreakdown traincar, IAmAMinigame completedGame, float score, int playerid)
 	{
-		currentscore += score * 100f;
 		print("Repairs Complete!");
+		currentscore += score * 100f;
+		//photonView.RPC("RPC_FixTrainCar", RpcTarget.AllViaServer, completedGame, -score);
+		// TODO UPDATE TO RPC
+		completedGame.fixTrainCar(-score);
 
 		controlsToDisable.SetActive(true);
 		player.EnableCamera();
@@ -39,7 +45,6 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 	void IRecieveCarBreakAlert.TraincarIsDamaged(GameObject Traincar, ICanBreakdown traincar, IAmAMinigame minigame)
 	{
 		print("TraincarIsDamaged");
-
 	}
 
 	void IAmAMinigameManager.DisableControls()
@@ -58,5 +63,16 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 	void IAmAMinigameManager.RegisterPlayer(IAmAMainTrainPlayer p)
 	{
 		player = p;
+	}
+
+	void Awake()
+	{
+		photonView = GetComponent<PhotonView>();
+	}
+
+	[PunRPC]
+	void RPC_FixTrainCar(IAmAMinigame game, float amountToFix)
+	{
+		game.fixTrainCar(amountToFix);
 	}
 }
