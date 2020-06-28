@@ -390,7 +390,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: -5627206222676269272, guid: 312de341e1af0ef4287afc8a1b939032,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2165,6 +2165,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5359951400811691103}
     m_Modifications:
+    - target: {fileID: 256182806800199326, guid: 141b3ccad5792dd44b71db1081c44421,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1453976204052841228, guid: 141b3ccad5792dd44b71db1081c44421,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2224,6 +2229,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Robot
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365986702775978756, guid: 141b3ccad5792dd44b71db1081c44421,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252715298862928648, guid: 141b3ccad5792dd44b71db1081c44421,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7367242948681662682, guid: 141b3ccad5792dd44b71db1081c44421,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538073291087378319, guid: 141b3ccad5792dd44b71db1081c44421,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8465031025352229228, guid: 141b3ccad5792dd44b71db1081c44421,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 141b3ccad5792dd44b71db1081c44421, type: 3}
