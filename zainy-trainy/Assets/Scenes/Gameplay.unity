@@ -544,6 +544,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2468d9cdba59ff409b3ddae183a2b3d, type: 3}
+--- !u!114 &136512369 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7381047921821829536, guid: c9625086aeab77343b507c45746f526f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5267893265263718280}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc39d629bd415b8449a2bbf0aaa33d29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &173393202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6434,6 +6446,11 @@ PrefabInstance:
       propertyPath: damagePerSecond
       value: 0.03
       objectReference: {fileID: 0}
+    - target: {fileID: 6848885537993962436, guid: c9625086aeab77343b507c45746f526f,
+        type: 3}
+      propertyPath: moduleManager
+      value: 
+      objectReference: {fileID: 136512369}
     - target: {fileID: 6848885538541749317, guid: c9625086aeab77343b507c45746f526f,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -6777,7 +6794,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 383d8bf76133957469e57585f49ab20a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.616
+  m_Volume: 0.233
   m_Pitch: 1
   Loop: 1
   Mute: 0

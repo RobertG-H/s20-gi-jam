@@ -6,6 +6,10 @@ public class PlantGameController : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    [SerializeField]
+    private DemoModuleManager moduleManager;
+
+
     public GameObject playerPrefab;
     public int maxBugs;
     GameObject plantPlayer;
@@ -25,8 +29,6 @@ public class PlantGameController : MonoBehaviour
     void Start()
     {
         bugSpawns = 0;
-        plantPlayer = Instantiate(playerPrefab, new Vector3(0.32f, -2.0f, 0), Quaternion.identity);
-        //Instantiate(bug, new Vector3(2, 0, 0), Quaternion.identity);
         walkPositions = new List<Vector3[]>();
         walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(1f, -1f, 0f) });
         walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(0.5f, -0f, 0f) });
@@ -81,10 +83,10 @@ public class PlantGameController : MonoBehaviour
         if ((bugSpawnCounter > bugSpawnTimer )&& bugSpawns<=maxBugs)
         {
             int randomChoice = Random.Range(0, spawPositions.Count);
-            GameObject currentBug = Instantiate(bug, spawPositions[randomChoice], Quaternion.identity);
+            GameObject currentBug = Instantiate(bug, spawPositions[randomChoice] + this.transform.position, Quaternion.identity);
             bugs.Add(currentBug);
-            currentBug.GetComponent<BugScript>().maxLeft = walkPositions[randomChoice][0];
-            currentBug.GetComponent<BugScript>().maxRight = walkPositions[randomChoice][1];
+            currentBug.GetComponent<BugScript>().maxLeft = walkPositions[randomChoice][0] + this.transform.position;
+            currentBug.GetComponent<BugScript>().maxRight = walkPositions[randomChoice][1] + this.transform.position;
 
             if (bugSpawns < 10)
             {
@@ -109,17 +111,23 @@ public class PlantGameController : MonoBehaviour
         if (bugs.Count==0 && bugSpawns>=maxBugs)
         {
             Debug.Log("you have eaten all the bugs");
-            resetPlantGame();
+            // resetPlantGame();
+            moduleManager.MinigameCompleted(1f);
+
         }
 
         if (plantPlayer.GetComponent<PlayerPlatformerController>().isDead)
         {
-            resetPlantGame();
+            //resetPlantGame();
+            moduleManager.MinigameCompleted(0f);
+
         }
 
     }
 
-    private void resetPlantGame()
+
+
+    private void OnDisable()
     {
         Destroy(plantPlayer.gameObject);
         foreach (GameObject incBug in bugs)
@@ -129,13 +137,14 @@ public class PlantGameController : MonoBehaviour
         bugs.Clear();
         
 
+    }
+
+    private void OnEnable()
+    {
         bugSpawns = 0;
-        plantPlayer = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        plantPlayer = Instantiate(playerPrefab, new Vector3(0, 0, 0) + this.transform.position, Quaternion.identity);
         //Instantiate(bug, new Vector3(2, 0, 0), Quaternion.identity);
         bugSpawnCounter = 0;
-
-        
         bugsEaten = 0;
-
     }
 }
