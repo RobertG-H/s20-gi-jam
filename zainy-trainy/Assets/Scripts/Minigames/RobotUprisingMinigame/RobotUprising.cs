@@ -274,7 +274,7 @@ public class RobotUprising : MonoBehaviour
 		{
 			submitted = true;
 			float numberBad = 0;
-			float numberGood = 0;
+			float numberDefaultBad = 0;
 			foreach(FunctionLineController lineFunc in lineFunctions)
 			{
 				lineFunc.ShowResult();
@@ -282,12 +282,15 @@ public class RobotUprising : MonoBehaviour
 				{
 					numberBad++;
 				}
-				else
+				if(lineFunc.defaultBad)
 				{
-					numberGood++;
+					numberDefaultBad++;
 				}
 			}
-			score = numberGood/(numberGood + numberBad);
+			Debug.Log("====");
+			Debug.Log(numberBad);
+			Debug.Log(numberDefaultBad);
+			score = (numberDefaultBad - numberBad)/(numberDefaultBad);
 			Debug.Log(score);
 			StartCoroutine("EndGame");
 		}
