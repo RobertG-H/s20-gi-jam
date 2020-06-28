@@ -15,7 +15,7 @@ public class LeafColliderScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerPlatformerController.instance.gameObject.transform.position.y-0.5 <= gameObject.transform.position.y)
+        if (PlayerPlatformerController.instance.gameObject.transform.position.y-PlayerPlatformerController.instance.gameObject.transform.localScale.y/2f <= gameObject.transform.position.y)
         {
             gameObject.GetComponent<PolygonCollider2D>().enabled = false;
             playerPassing = false;

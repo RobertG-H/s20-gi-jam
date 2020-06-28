@@ -23,7 +23,7 @@ public class BugScript : MonoBehaviour
         controller = GameObject.Find("PlantGameController").GetComponent("PlantGameController") as PlantGameController;
         startPos = gameObject.transform.position;
         rb2d = GetComponent<Rigidbody2D>();
-        size = 5;
+        
     }
 
     public void changeSize(int size)
@@ -32,6 +32,7 @@ public class BugScript : MonoBehaviour
         Vector3 scaler = transform.localScale;
         scaler *= size / 5f;
         transform.localScale = scaler;
+        Debug.Log(this.size);
     }
 
     // Update is called once per frame

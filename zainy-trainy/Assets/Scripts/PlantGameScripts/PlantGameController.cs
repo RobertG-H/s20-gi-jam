@@ -24,14 +24,14 @@ public class PlantGameController : MonoBehaviour
     void Start()
     {
         bugSpawns = 1;
-        plantPlayer = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        plantPlayer = Instantiate(playerPrefab, new Vector3(0.32f, -2.0f, 0), Quaternion.identity);
         //Instantiate(bug, new Vector3(2, 0, 0), Quaternion.identity);
         walkPositions = new List<Vector3[]>();
         walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(1f, -1f, 0f) });
         walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(0.5f, -0f, 0f) });
         walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(-0.5f, -0.1f, 0f) });
-        walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(0.1f, 0f, 0f) });
-        walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(0.1f, -0.1f, 0f) });
+        walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(0.2f, 0f, 0f) });
+        walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(0.2f, -0.2f, 0f) });
         walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(1f, -1f, 0f) });
         walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(-1f, -1f, 0f) });
         walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(-1f, -1f, 0f) });
@@ -52,7 +52,18 @@ public class PlantGameController : MonoBehaviour
         walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.5f, -0.6f, 0f) });
         walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.5f, 0.1f, 0f) });
         walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.7f, 0.1f, 0f) });
-        //walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.7f, 0.2f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.7f, 0.2f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.3f, -0.8f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.7f, 0.3f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.7f, 0.4f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.4f, 0.1f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.6f, -0.2f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.4f, 0.1f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.4f, -0.3f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.3f, 0.1f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.7f, 0.5f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(1.1f, 1f, 0f) });
+
 
 
 
@@ -83,6 +94,7 @@ public class PlantGameController : MonoBehaviour
             else
             {
                 currentBug.GetComponent<BugScript>().changeSize(Random.Range(1, 10));
+                bugSpawns++;
             }
 
 
@@ -93,7 +105,7 @@ public class PlantGameController : MonoBehaviour
             bugSpawnCounter += Time.deltaTime;
         }
 
-        if (bugs.Count==0 && bugSpawns>=20)
+        if (bugs.Count==0 && bugSpawns>=maxBugs)
         {
             Debug.Log("you have eaten all the bugs");
             resetPlantGame();

@@ -32,7 +32,8 @@ public class PlayerPlatformerController : MonoBehaviour
 
     public bool isDead = false;
 
-    int size=5;
+    float size=2f;
+
 
     Rigidbody2D rb2d;
 
@@ -46,6 +47,7 @@ public class PlayerPlatformerController : MonoBehaviour
         currentInputs.jumping = false;
         currentInputs.down = false;
         jumptimer = 0;
+        transform.localScale = new Vector3(size / 5f, size / 5f, size / 5f);
     }
 
     void Update()
@@ -71,18 +73,26 @@ public class PlayerPlatformerController : MonoBehaviour
 
                 if (size <= 9)
                 {
-                    print("size");
-                    print(size <= 9);
-                    size += 1;
+
+                    size += col.GetComponent<BugScript>().size/4f;
                     Vector3 scaler = transform.localScale;
-                    scaler = (scaler / ((size - 1) / 5f)) * (size / 5f);
-                    transform.localScale = scaler;
+                    if (scaler.x < 0)
+                    {
+                        transform.localScale=new Vector3(-size/5f, size/5f, size/5f);
+                    }
+                    else
+                    {
+                        transform.localScale = new Vector3(size / 5f, size / 5f, size / 5f);
+                    }
+                   
                 }
                 
             }
             else
             {
-                //print("you cannot eat this");
+                Debug.Log("you cannot eat this");
+                Debug.Log(col.GetComponent<BugScript>().size);
+                Debug.Log(size);
             }
             
         }
@@ -124,7 +134,7 @@ public class PlayerPlatformerController : MonoBehaviour
             Flip();
         }
 
-        if (currentInputs.jumping && velocity.y == 0f)
+        if (currentInputs.jumping && velocity.y <= 0.1f)
         {
             velocity.y = jumpTakeOffSpeed;
             isJumping = true;
