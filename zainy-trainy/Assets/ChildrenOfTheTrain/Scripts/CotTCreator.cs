@@ -9,6 +9,8 @@ public class CotTCreator : MonoBehaviour
 
     private GameObject game;
 
+    public Transform spawnPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +25,7 @@ public class CotTCreator : MonoBehaviour
 
     void OnEnable()
     {
-        game = Instantiate(cott_prefab, transform).gameObject;
+        game = Instantiate(cott_prefab, spawnPoint).gameObject;
         game.GetComponent<CottManager>().mod_manager = mod_manager;
     }
 
