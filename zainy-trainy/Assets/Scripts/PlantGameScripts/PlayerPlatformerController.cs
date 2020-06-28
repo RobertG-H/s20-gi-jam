@@ -91,16 +91,15 @@ public class PlayerPlatformerController : MonoBehaviour
             }
             else
             {
-                Debug.Log("you cannot eat this");
-                Debug.Log(col.GetComponent<BugScript>().size);
-                Debug.Log(size);
+                Debug.Log("you tried to eat a bug that is too big for you!");
+                isDead = true;
             }
             
         }
 
         if (col.name == "DeadBox")
         {
-            Debug.Log("you are dead");
+            Debug.Log("you fell off!");
             isDead = true;
 
         }

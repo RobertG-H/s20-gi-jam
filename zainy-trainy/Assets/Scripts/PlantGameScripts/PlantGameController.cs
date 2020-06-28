@@ -86,10 +86,10 @@ public class PlantGameController : MonoBehaviour
             currentBug.GetComponent<BugScript>().maxLeft = walkPositions[randomChoice][0];
             currentBug.GetComponent<BugScript>().maxRight = walkPositions[randomChoice][1];
 
-            if (bugSpawns < 20)
+            if (bugSpawns < 10)
             {
                 
-                currentBug.GetComponent<BugScript>().changeSize(Random.Range(1, (int)(bugSpawns / 2)));
+                currentBug.GetComponent<BugScript>().changeSize(Random.Range(1, (int)(bugSpawns)));
                 bugSpawns++;
             }
             else
