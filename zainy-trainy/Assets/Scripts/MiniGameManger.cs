@@ -27,7 +27,10 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 	{
 		print("Repairs Complete!");
 		currentscore += score * 100f;
-		photonView.RPC("RPC_FixTrainCar", RpcTarget.AllViaServer, completedGame, -score);
+		//photonView.RPC("RPC_FixTrainCar", RpcTarget.AllViaServer, completedGame, -score);
+		// TODO UPDATE TO RPC
+		completedGame.fixTrainCar(-score);
+
 		controlsToDisable.SetActive(true);
 		player.EnableCamera();
 	}
