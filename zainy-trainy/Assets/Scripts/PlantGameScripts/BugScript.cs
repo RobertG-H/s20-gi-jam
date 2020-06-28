@@ -98,5 +98,6 @@ public class BugScript : MonoBehaviour
     private void OnDestroy()
     {
         controller.bugs.Remove(gameObject);
+        controller.bugsEaten++;
     }
 }

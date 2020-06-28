@@ -31,6 +31,7 @@ public class PlayerPlatformerController : MonoBehaviour
     bool facingRight = false;
 
     public bool isDead = false;
+    bool isGrounded = false;
 
     float size=2f;
 
@@ -110,7 +111,7 @@ public class PlayerPlatformerController : MonoBehaviour
     {
         if (col.gameObject.tag == "LeafCollider")
         {
-            
+            isGrounded = true;
         }
     }
 
@@ -142,12 +143,13 @@ public class PlayerPlatformerController : MonoBehaviour
             Flip();
         }
 
-        if (currentInputs.jumping && velocity.y <= 0.1f)
+        if (currentInputs.jumping && isGrounded)
         {
             velocity.y = jumpTakeOffSpeed;
             gameObject.GetComponent<PlantGameAudioManager>().playJumpSound();
             isJumping = true;
             jumptimer = jumptime;
+            isGrounded = false;
             
 
         }

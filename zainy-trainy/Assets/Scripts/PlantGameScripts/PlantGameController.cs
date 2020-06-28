@@ -16,6 +16,7 @@ public class PlantGameController : MonoBehaviour
     private float bugSpawnCounter;
     public List<GameObject> bugs;
     private int bugSpawns;
+    public int bugsEaten=0;
     
 
     Canvas canvas;
@@ -23,7 +24,7 @@ public class PlantGameController : MonoBehaviour
 
     void Start()
     {
-        bugSpawns = 1;
+        bugSpawns = 0;
         plantPlayer = Instantiate(playerPrefab, new Vector3(0.32f, -2.0f, 0), Quaternion.identity);
         //Instantiate(bug, new Vector3(2, 0, 0), Quaternion.identity);
         walkPositions = new List<Vector3[]>();
@@ -126,11 +127,15 @@ public class PlantGameController : MonoBehaviour
             Destroy(incBug);
         }
         bugs.Clear();
+        
 
-
-        bugSpawns = 1;
+        bugSpawns = 0;
         plantPlayer = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         //Instantiate(bug, new Vector3(2, 0, 0), Quaternion.identity);
         bugSpawnCounter = 0;
+
+        
+        bugsEaten = 0;
+
     }
 }
