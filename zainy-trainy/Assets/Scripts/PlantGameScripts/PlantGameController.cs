@@ -83,10 +83,10 @@ public class PlantGameController : MonoBehaviour
         if ((bugSpawnCounter > bugSpawnTimer )&& bugSpawns<=maxBugs)
         {
             int randomChoice = Random.Range(0, spawPositions.Count);
-            GameObject currentBug = Instantiate(bug, spawPositions[randomChoice] + this.transform.position, Quaternion.identity);
+            GameObject currentBug = Instantiate(bug, gameObject.transform.TransformPoint(spawPositions[randomChoice]), Quaternion.identity);
             bugs.Add(currentBug);
-            currentBug.GetComponent<BugScript>().maxLeft = walkPositions[randomChoice][0] + this.transform.position;
-            currentBug.GetComponent<BugScript>().maxRight = walkPositions[randomChoice][1] + this.transform.position;
+            currentBug.GetComponent<BugScript>().maxLeft = walkPositions[randomChoice][0];
+            currentBug.GetComponent<BugScript>().maxRight = walkPositions[randomChoice][1];
 
             if (bugSpawns < 10)
             {
@@ -119,7 +119,8 @@ public class PlantGameController : MonoBehaviour
         if (plantPlayer.GetComponent<PlayerPlatformerController>().isDead)
         {
             //resetPlantGame();
-            moduleManager.MinigameCompleted(0f);
+            moduleManager.MinigameCompleted((float)bugsEaten / (float)bugSpawns);
+
 
         }
 
