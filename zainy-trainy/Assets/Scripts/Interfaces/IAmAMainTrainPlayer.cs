@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IAmAMainTrainPlayer
 {
-    void HandleInput(Inputs currentInputs);
+    void EnableCamera();
+    void HandleInput(MainTrain.Inputs currentInputs);
 }

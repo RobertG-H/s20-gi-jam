@@ -15,6 +15,8 @@ public class DemoModuleManager : MonoBehaviour, IAmAMinigame
 	private GameObject traincarObject;
 	private ICanBreakdown traincarinterface;
 
+	public MiniGames currentMiniGame;
+
 	bool isBeingPlayed = false;
 	int playerPlaying = -1;
 
@@ -35,10 +37,15 @@ public class DemoModuleManager : MonoBehaviour, IAmAMinigame
 
 	public void MinigameCompleted(float score)
 	{
-		traincarinterface.AddDamage(-score);
+		//traincarinterface.AddDamage(-score); // This is handled via rpc now
 		isBeingPlayed = false;
 		minigameToEnable.SetActive(false);
 		scoreReciever.RepaireCompleted(traincarinterface, this, score, playerPlaying);
+	}
+
+	void IAmAMinigame.fixTrainCar(float amountToFix)
+	{
+		traincarinterface.AddDamage(-amountToFix);
 	}
 
 
@@ -57,5 +64,10 @@ public class DemoModuleManager : MonoBehaviour, IAmAMinigame
 	int IAmAMinigame.GetLastPlayerWhoPlayed()
 	{
 		return playerPlaying; 
+	}
+
+	MiniGames IAmAMinigame.GetGameEnum()
+	{
+		return currentMiniGame;
 	}
 }

@@ -76,6 +76,14 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Esc",
+                    "type": "Button",
+                    "id": "76760f45-24bc-4788-b176-ac3a68b143db",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -175,6 +183,120 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "MouseDelta",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "38f7936f-084a-424d-b5df-ec84bc73696d",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Esc",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "RobotUprising",
+            "id": "660ac4ef-05d8-4117-a8b5-e99829a96621",
+            "actions": [
+                {
+                    "name": "Enter",
+                    "type": "Button",
+                    "id": "d181d9f8-36bd-44e0-9d44-50a0f698c1a1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Down",
+                    "type": "Button",
+                    "id": "247b0508-8b76-46c4-b189-2029ec980551",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Up",
+                    "type": "Button",
+                    "id": "409cdd3a-1d4c-4ea9-987a-a2ebb1b6c5f9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Ctrl",
+                    "type": "Button",
+                    "id": "365bcb37-fc94-4ee9-86c1-475e72b28b5c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "S",
+                    "type": "Button",
+                    "id": "0780dd00-1bbf-4f6f-92b5-072f4fff8aa6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "040196be-f56c-41f5-9e30-5e5fa059e4af",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Enter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b659c022-3852-4cf1-bb2e-501c2f780ec0",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f3a28929-5c64-4332-94bf-843e380600e2",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "73e0828e-5b79-4179-b191-866b93613f1a",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ctrl",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb921711-8e8f-410c-9672-2fd725700bfd",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "S",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

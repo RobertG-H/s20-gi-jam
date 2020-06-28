@@ -16,6 +16,9 @@ public class DemoGameManager : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresO
 	GameObject moduleObject;
 
 
+	Camera maincam;
+
+
 	void IServiceProvider.RegisterServices()
 	{
 		this.RegisterService<IRecieveCarBreakAlert>();
@@ -27,17 +30,23 @@ public class DemoGameManager : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresO
 		currentscore += score * 100f;
 		print("Got here");
 		canvastodisable.SetActive(true);
+		maincam.gameObject.SetActive(true);
 	}
 
 
 	void IRecieveCarBreakAlert.TraincarIsBroken(GameObject Traincar, ICanBreakdown traincar, IAmAMinigame minigame)
 	{
-		Debug.Log("i dont care");
+		//Debug.Log("i dont care");
 	}
 
 	void IRecieveCarBreakAlert.TraincarIsDamaged(GameObject Traincar, ICanBreakdown traincar, IAmAMinigame minigame)
 	{
-		Debug.Log("i dont care");
+		//Debug.Log("i dont care");
+	}
+
+	void Start()
+	{
+		maincam = Camera.main;
 	}
 
 
@@ -49,6 +58,7 @@ public class DemoGameManager : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresO
 
 	public void EnterTheOneMinigame()
 	{
+		maincam.gameObject.SetActive(false);
 		moduleObject.GetComponent<IAmAMinigame>().OpenMinigame(1);
 		canvastodisable.SetActive(false);
 	}
