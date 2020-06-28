@@ -37,6 +37,7 @@ public class DejaVuToaster : MonoBehaviour
     private float currentTimeCrossing;
     private int toasterPos;
     private bool shot;
+    private int samplesToStart = -1;
 
     
     // Start is called before the first frame update
@@ -53,18 +54,25 @@ public class DejaVuToaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!go && musicSource.timeSamples >= samplesToStart && samplesToStart > 0)
+        {
+            go = true;
+            audioController.PlayDrift();
+            StartCoroutine("RampVolumeDown");
+            trailEffect.SetActive(true);
+        }
         if(go)
         {
             if(currentTimeCrossing <= timeToCross)
             {
                 if(toasterPos == 0) //Left crate to right crate
                 {
-                    toaster.transform.position = Vector3.Lerp(crateL.position, crateR.position, currentTimeCrossing/timeToCross);
+                    toaster.transform.position = Vector3.Lerp(crateL.position, crateR.position, Mathf.Pow(currentTimeCrossing/timeToCross, 2));
 
                 }
                 else //Right crate to left crate
                 {
-                    toaster.transform.position = Vector3.Lerp(crateR.position, crateL.position, currentTimeCrossing/timeToCross);
+                    toaster.transform.position = Vector3.Lerp(crateR.position, crateL.position, Mathf.Pow(currentTimeCrossing/timeToCross, 2));
                 }
                 currentTimeCrossing += Time.deltaTime;
             }
@@ -114,14 +122,18 @@ public class DejaVuToaster : MonoBehaviour
             toaster.transform.localScale = newScale;
         }
         timeToWait = Random.Range(minWait, maxWait);
-        float songStart = dejaVuTime - timeToWait;
+        
         toasterAnim.Play("ToasterAlive");
         musicSource = audioController.PlayDejaVu();
-        musicSource.time = songStart;
         musicSource.volume = musicVolLow;
+
+        float songStart = dejaVuTime - timeToWait;
+        samplesToStart = (int)(dejaVuTime * musicSource.clip.frequency);
+        int samplesStart = (int)(songStart*musicSource.clip.frequency);
         musicSource.Play();
+        musicSource.timeSamples = samplesStart;
         StartCoroutine("RampVolumeUp");
-        StartCoroutine("ToasterWaitToGo");
+        // StartCoroutine("ToasterWaitToGo");
     }
     private IEnumerator RampVolumeUp()
     {
@@ -147,17 +159,9 @@ public class DejaVuToaster : MonoBehaviour
             yield return new WaitForEndOfFrame();
             musicSource.volume = Mathf.Lerp(musicVolHigh, 0, currentTime/rampDownTime);
         }
-        Destroy(musicSource.gameObject);
+        if(musicSource.gameObject != null)
+            Destroy(musicSource.gameObject);
     }
-    private IEnumerator ToasterWaitToGo()
-    {
-        yield return new WaitForSeconds(timeToWait);
-        audioController.PlayDrift();
-        StartCoroutine("RampVolumeDown");
-        trailEffect.SetActive(true);
-        go = true;
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         canHit = true;
@@ -182,8 +186,8 @@ public class DejaVuToaster : MonoBehaviour
                 target.transform.position = toaster.transform.position;
                 float score = 1 - Mathf.Min((toaster.transform.position - center.position).magnitude/(edge.position - center.position).magnitude, 1);
                 toasterAnim.Play("ToasterDead");
-                StartCoroutine(EndGame(score));
                 go = false;
+                StartCoroutine(EndGame(score));
             }
         }
     }
@@ -191,6 +195,7 @@ public class DejaVuToaster : MonoBehaviour
 	{
         trailEffect.SetActive(false);
         musicSource.volume = musicVolLow;
+        samplesToStart = -1;
 		yield return new WaitForSeconds(endGameTime);
         Debug.Log(score);
         // Initialize();
