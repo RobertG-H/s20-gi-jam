@@ -18,7 +18,7 @@ public class Rotates : MonoBehaviour
     {
         rotation += Time.deltaTime * speed;
         transform.rotation = Quaternion.Euler(0, 0, rotation);
-        if(rotation > 360)
+        if(rotation > 1800)
         {
             rotation = 0;
         }
