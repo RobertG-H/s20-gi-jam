@@ -28,6 +28,6 @@ public class DemoTraincarHandler : MonoBehaviour, ICanBreakdown
     {
 		currentHealth = Mathf.Clamp01(currentHealth-Time.deltaTime * 0.1f);
 
-		this.GetComponent<MeshRenderer>().material.color = Color.Lerp(Color.green, Color.red, Mathf.Pow(1 - currentHealth, 4f));
+		// this.GetComponent<MeshRenderer>().material.color = Color.Lerp(Color.green, Color.red, Mathf.Pow(1 - currentHealth, 4f));
     }
 }

@@ -1,0 +1,497 @@
+fileFormatVersion: 2
+guid: 312de341e1af0ef4287afc8a1b939032
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7309555384588068232
+    second: Train Spritesheet_0
+  - first:
+      213: -5643828238962514267
+    second: Train Spritesheet_1
+  - first:
+      213: 9018477518830059032
+    second: Train Spritesheet_2
+  - first:
+      213: -8257499562649498781
+    second: Train Spritesheet_3
+  - first:
+      213: 8605073831642370371
+    second: Train Spritesheet_4
+  - first:
+      213: -1919481400798551085
+    second: Train Spritesheet_5
+  - first:
+      213: 8871138328518484556
+    second: Train Spritesheet_6
+  - first:
+      213: 4095716815584148583
+    second: Train Spritesheet_7
+  - first:
+      213: -5024050100774738242
+    second: Train Spritesheet_8
+  - first:
+      213: -3811225407465969813
+    second: Train Spritesheet_9
+  - first:
+      213: -2153623958377781551
+    second: Train Spritesheet_10
+  - first:
+      213: -3640195695410547312
+    second: Train Spritesheet_11
+  - first:
+      213: 2346541139932850762
+    second: Train Spritesheet_12
+  - first:
+      213: -8462077316222346701
+    second: Train Spritesheet_13
+  - first:
+      213: -8834968482566229115
+    second: Train Spritesheet_14
+  - first:
+      213: -613634003006643219
+    second: Train Spritesheet_15
+  - first:
+      213: 1617167856474439174
+    second: Train Spritesheet_16
+  - first:
+      213: -5627206222676269272
+    second: Train Spritesheet_17
+  - first:
+      213: 4426265702380436015
+    second: Train Spritesheet_18
+  - first:
+      213: 8963164076310105314
+    second: Train Spritesheet_19
+  - first:
+      213: -4954942081407719464
+    second: Train Spritesheet_9
+  - first:
+      213: -6182725460241798878
+    second: Train Spritesheet_2
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Train Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 2744
+        width: 66
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87a959bfa1e3f8a90800000000000000
+      internalID: -7309555384588068232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Train Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 2716
+        width: 95
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a622537e181da1b0800000000000000
+      internalID: -5643828238962514267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Train Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 2527
+        width: 197
+        height: 283
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3419d09ee0d5b6770800000000000000
+      internalID: 8605073831642370371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Train Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 2367
+        width: 1383
+        height: 438
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d3ee68f5d1ac55e0800000000000000
+      internalID: -1919481400798551085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Train Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 2559
+        width: 127
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76cbc756eb8e6d830800000000000000
+      internalID: 4095716815584148583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Train Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 2587
+        width: 177
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb66e894d0df64ab0800000000000000
+      internalID: -5024050100774738242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Train Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 2345
+        width: 287
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d62f159b6acc12e0800000000000000
+      internalID: -2153623958377781551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Train Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 2366
+        width: 84
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4aa988fbb6909020800000000000000
+      internalID: 2346541139932850762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Train Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 2178
+        width: 95
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5833eda89f2e36580800000000000000
+      internalID: -8834968482566229115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Train Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 2229
+        width: 626
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de320bc102feb77f0800000000000000
+      internalID: -613634003006643219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Train Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 1906
+        width: 120
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60eb65be895517610800000000000000
+      internalID: 1617167856474439174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Train Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 1998
+        width: 791
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 827638331c528e1b0800000000000000
+      internalID: -5627206222676269272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Train Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 1538
+        width: 1655
+        height: 267
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2a71e774314d6d30800000000000000
+      internalID: 4426265702380436015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Train Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 1094
+        width: 1827
+        height: 197
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ec81001d3e836c70800000000000000
+      internalID: 8963164076310105314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Train Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 2728
+        width: 62
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 229268e83fb823aa0800000000000000
+      internalID: -6182725460241798878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
