@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using System.Linq;
 
-public enum MiniGames { WELDING, ROBOT, TOASTER, HOSE};
+public enum MiniGames { WELDING, ROBOT, TOASTER, HOSE, CHILDREN, PLANT};
 
 public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOnRepairComplete, IAmAMinigameManager, IServiceProvider
 {
