@@ -42,7 +42,7 @@ public class DemoTraincarHandler : MonoBehaviour, ICanBreakdown
 			if (currentHealth <= 0) healthController.ShowBroken();
 			else healthController.ShowFunctional();
 			Color darkRed = new Color(0.4f, 0.05f, 0.05f);
-			Color newColor = Color.Lerp(Color.green, darkRed, Mathf.Pow(1 - currentHealth, 4f));
+			Color newColor = Color.Lerp(Color.green, darkRed, (1 - currentHealth));
 			healthController.UpdateStatusColor(newColor);
 		}
 		else
