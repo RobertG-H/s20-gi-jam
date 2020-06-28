@@ -5097,6 +5097,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MiniGameMP3Welding
       objectReference: {fileID: 0}
+    - target: {fileID: 7305156144228433831, guid: dea945c7ef7618f48bde56236651c0c4,
+        type: 3}
+      propertyPath: damagePerSecond
+      value: 0.09
+      objectReference: {fileID: 0}
     - target: {fileID: 7951632934993460792, guid: dea945c7ef7618f48bde56236651c0c4,
         type: 3}
       propertyPath: m_Enabled
@@ -5433,6 +5438,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7271221646139349570, guid: 772b1c10b6d753ea3b933e1bdde1fae2,
+        type: 3}
+      propertyPath: damagePerSecond
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 772b1c10b6d753ea3b933e1bdde1fae2, type: 3}
@@ -6419,6 +6429,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5922130051281304034, guid: c9625086aeab77343b507c45746f526f,
+        type: 3}
+      propertyPath: damagePerSecond
+      value: 0.03
+      objectReference: {fileID: 0}
     - target: {fileID: 6848885538541749317, guid: c9625086aeab77343b507c45746f526f,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -6921,7 +6936,7 @@ PrefabInstance:
     - target: {fileID: 8181647370954078797, guid: 7f316f82bb13d9643a2f11750f31bafc,
         type: 3}
       propertyPath: amtBrokenCarsToLose
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8181647370954078797, guid: 7f316f82bb13d9643a2f11750f31bafc,
         type: 3}
