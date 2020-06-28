@@ -4,12 +4,43 @@ using UnityEngine;
 
 public class HoseMinigameHandler : MonoBehaviour
 {
-	[SerializeField]
-	private Camera prefabCams;
+	[HideInInspector]
+	public HoseHandler hoseHandler;
 
+	List<HoseLevel> hoseLevels;
 
-	void Awake()
+	private void Awake()
 	{
+		hoseLevels = new List<HoseLevel>(this.gameObject.GetComponentsInChildren<HoseLevel>(true));
+		hoseHandler = this.GetComponentInChildren<HoseHandler>();
+	}
 
+
+
+	private void OnEnable()
+	{
+		hoseHandler.isPlugged = false;
+		int randind = Random.Range(0, hoseLevels.Count);
+		hoseLevels[randind].gameObject.SetActive(true);
+		hoseHandler.activeLevel = hoseLevels[randind];
+		hoseHandler.baseTrans = hoseLevels[randind].anchorObject.transform;
+		countdowntoquit = 1f;
+		hoseHandler.nozzleObject.position = hoseHandler.baseTrans.position;
+	}
+
+	float countdowntoquit = 1f;
+	private void Update()
+	{
+		if(hoseHandler.isPlugged)
+		{
+			countdowntoquit -= Time.deltaTime;
+		}
+
+		if(countdowntoquit <0f)
+		{
+			hoseHandler.Clear();
+			//CALL OUT
+			//END OF GAME
+		}
 	}
 }

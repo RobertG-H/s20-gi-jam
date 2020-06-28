@@ -11,11 +11,31 @@ public class HoseHandler : MonoBehaviour
 	public Transform nozzleObject;
 
 	public HoseLevel activeLevel;
+	
+	public bool ready2Plug
+	{
+		get
+		{
+			foreach(CircleCollider2D circ2d in activeLevel.nodes)
+			{
+				IHosePowerable ihp = circ2d.GetComponent<IHosePowerable>();
+				if (ihp != null)
+				{
+					if (!ihp.IsPowered() && ihp.NeedsPowerForComplete())
+						return false;
+				}
+			}
 
+			return true;
+		}
+	}
+
+	[HideInInspector]
+	public bool isPlugged = false;
 
 
 	List<PosNorm> listofPoints = new List<PosNorm>();
-	float offsetdistance = .735f;
+	float offsetdistance = .55f;
 	float additionadistoffset = 0.1f;
 
 	struct PosNorm
@@ -67,7 +87,7 @@ public class HoseHandler : MonoBehaviour
 
 	Vector3 GetLastPosition(int index)
 	{
-		if (index > 0)
+		if (index > 0 && index <= listofPoints.Count)
 			return listofPoints[index - 1].pos;
 		else
 			return baseTrans.position;
@@ -360,10 +380,24 @@ public class HoseHandler : MonoBehaviour
 		listofPoints.RemoveAt(index);
 	}
 
+	void UpdateNozzleAngle()
+	{
+		Vector3 lastPos = this.GetLastPosition(listofPoints.Count);
+		Vector3 nzpos = nozzleObject.position;
+		nzpos.z = 0;
+		if ((nzpos -baseTrans.position).magnitude < 0.2f )
+			lastPos = nozzleObject.position - Vector3.up;
+		nozzleObject.up = (nozzleObject.position - lastPos).normalized;
+
+		if (isPlugged)
+			nozzleObject.up = Vector3.up;
+	}
+
 
 	Vector3 UpdateHand(Vector3 mouse3)
 	{
 		handObject.position = mouse3;
+		UpdateNozzleAngle();
 		return nozzleObject.position;
 	}
 
@@ -375,13 +409,15 @@ public class HoseHandler : MonoBehaviour
 			if ((handObject.position - nozzleObject.position).magnitude < 0.3f)
 			{
 				if (listofPoints.Count > 0)
+				{
 					this.RemovePoint(listofPoints.Count - 1);
+				}
 			}
 		}
 		else
 			handObject.position = baseTrans.position;
 
-
+		UpdateNozzleAngle();
 		return nozzleObject.position;
 	}
 
@@ -421,7 +457,27 @@ public class HoseHandler : MonoBehaviour
 			
 			for (int i = listofPoints.Count-1; i >=cutIndex; i--)
 			{
+				IHosePowerable ihp = listofPoints[i].col2d.GetComponent<IHosePowerable>();
+				if(ihp!=null)
+				{
+					ihp.Depower();
+				}
+
+
 				RemovePoint(i);
+			}
+		}
+	}
+
+
+	void CheckForPower()
+	{
+		foreach(PosNorm pnc in listofPoints)
+		{
+			IHosePowerable ihp = pnc.col2d.GetComponent<IHosePowerable>();
+			if (ihp != null)
+			{
+				ihp.Power();
 			}
 		}
 	}
@@ -440,36 +496,58 @@ public class HoseHandler : MonoBehaviour
 		{
 			float distToNozzle = (nozzleObject.position - wp).magnitude;
 			if (distToNozzle < offsetdistance)
+			{
 				isDragging = true;
+				isPlugged = false;
+			}
 		}
 
 		if (!hoseInput.leftdown)
 			isDragging = false;
 
-
-		if (isDragging)
+		if (!isPlugged)
 		{
-			wp = UpdateHand(wp);
-
-			for (int i = listofPoints.Count - 1; i >= 0; i--)
+			if (isDragging)
 			{
-				TearOff(i, wp);
-			}
+				wp = UpdateHand(wp);
 
-			//CastToMouse(wp);
-			if (lastWp.x < float.MaxValue)
-			{
-				Vector3 lastpos = GetLastPosition(listofPoints.Count);
-				CastToMouseRange(listofPoints.Count, lastpos, lastWp, wp);
-			}
+				for (int i = listofPoints.Count - 1; i >= 0; i--)
+				{
+					TearOff(i, wp);
+				}
 
-			CheckForCuts();
+				//CastToMouse(wp);
+				if (lastWp.x < float.MaxValue)
+				{
+					Vector3 lastpos = GetLastPosition(listofPoints.Count);
+					CastToMouseRange(listofPoints.Count, lastpos, lastWp, wp);
+				}
+				CheckForCuts();
+			}
+			else
+				wp = UpdateHandNotDragging();
 		}
 		else
-			wp = UpdateHandNotDragging();
+			wp = nozzleObject.position;
 
+		CheckForPower();
 		UpdateLineRenderer(wp);
 		lastWp = wp;
+	}
+
+
+	public void Clear()
+	{
+		for (int i = listofPoints.Count - 1; i >= 0; i--)
+		{
+			IHosePowerable ihp = listofPoints[i].col2d.GetComponent<IHosePowerable>();
+			if (ihp != null)
+			{
+				ihp.Depower();
+			}
+
+			RemovePoint(i);
+		}
 	}
 
 }

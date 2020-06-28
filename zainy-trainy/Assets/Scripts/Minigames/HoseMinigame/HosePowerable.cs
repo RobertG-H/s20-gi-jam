@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HoseNode : MonoBehaviour
+public interface IHosePowerable
 {
-	public void Depower()
-	{
-		this.gameObject.GetComponent<MeshRenderer>().material.color = Color.black;
-	}
-
-	public void Power()
-	{
-		this.gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
-	}
+	void Depower();
+	void Power();
+	bool NeedsPowerForComplete();
+	bool IsPowered();
 }

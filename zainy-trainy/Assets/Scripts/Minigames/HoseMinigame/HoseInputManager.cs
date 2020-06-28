@@ -40,7 +40,6 @@ public class HoseInputManager : MonoBehaviour
 	public void MouseClick1(InputAction.CallbackContext context)
 	{
 		leftdown = context.ReadValueAsButton();
-
 	}
 
 	public void MouseClick2(InputAction.CallbackContext context)

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HoseLevel : MonoBehaviour
 {
+	public GameObject anchorObject;
 	List<CircleCollider2D> nodesGot;
 	public List<CircleCollider2D> nodes
 	{
