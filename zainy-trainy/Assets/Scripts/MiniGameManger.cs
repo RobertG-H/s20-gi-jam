@@ -35,7 +35,7 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 		controlsToDisable.SetActive(true);
 		player.EnableCamera();
 		// Send request to GameManager to fix all clients traincar
-		GameManager.Instance.
+		//GameManager.Instance.
 	}
 
 
