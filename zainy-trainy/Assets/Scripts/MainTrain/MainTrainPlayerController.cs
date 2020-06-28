@@ -32,7 +32,17 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
 
     private int currentGame;
 
+    private int lastMiniGamePlayed;
+
     bool isFacingRight = true;
+
+    public AudioClip enter;
+
+    public AudioClip unable;
+
+    public AudioClip jump;
+
+    private AudioSource aSource;
 
     void Start()
     {
@@ -40,6 +50,7 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
 
         rigidbody = GetComponent<Rigidbody2D>();
         photonView = GetComponent<PhotonView>();
+        aSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (photonView.IsMine)
         {
@@ -54,6 +65,7 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
         }
         spriteRenderer.sprite = walkingSprite;
         currentGame = -1;
+        lastMiniGamePlayed = -1;
     }
 
     void Update()
@@ -96,6 +108,7 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
         if(currentInputs.space && isGrounded())
         {
             rigidbody.AddForce(new Vector2(rigidbody.velocity.x, jumpForce));
+            PlaySound(jump);
         }
 
         if(currentInputs.up)
@@ -104,14 +117,20 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
             {
                 // Check if another player is playing the mini game
                 currentGame = (int)currentModuleTrigger.GetGameEnum();
-                if ((bool)PhotonNetwork.CurrentRoom.CustomProperties[currentGame.ToString()]) return;
+                if ((bool)PhotonNetwork.CurrentRoom.CustomProperties[currentGame.ToString()] || lastMiniGamePlayed==currentGame)
+                {
+                    PlaySound(unable);
+                    return;
+                }
 
+                lastMiniGamePlayed = currentGame;
                 // Inform room that player is playing the current Minigame
                 Hashtable currentProps = PhotonNetwork.CurrentRoom.CustomProperties;
                 currentProps[currentGame.ToString()] = true;
                 PhotonNetwork.CurrentRoom.SetCustomProperties(currentProps);
 
                 photonView.RPC("RPCStartingMiniGame", RpcTarget.AllViaServer);
+                PlaySound(enter);
                 miniGameManager.DisableControls();
                 cam.SetActive(false);
                 currentModuleTrigger.EnterTheOneMinigame();
@@ -151,6 +170,12 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
         spriteRenderer.sprite = walkingSprite;
         rigidbody.velocity = new Vector2(0, 0);
         rigidbody.isKinematic = false;
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        aSource.clip = clip;
+        aSource.Play();
     }
 
 }

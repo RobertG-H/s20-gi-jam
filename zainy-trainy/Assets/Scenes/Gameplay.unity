@@ -6575,6 +6575,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1000
       objectReference: {fileID: 0}
+    - target: {fileID: 6848885538541749317, guid: c9625086aeab77343b507c45746f526f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6848885538541749317, guid: c9625086aeab77343b507c45746f526f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7381047921821829536, guid: c9625086aeab77343b507c45746f526f,
         type: 3}
       propertyPath: currentMiniGame
@@ -6644,6 +6654,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381047921821829537, guid: c9625086aeab77343b507c45746f526f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381047921821829537, guid: c9625086aeab77343b507c45746f526f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7381047921821829539, guid: c9625086aeab77343b507c45746f526f,
         type: 3}

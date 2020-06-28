@@ -187,7 +187,7 @@ public class DejaVuToaster : MonoBehaviour
                 float score = 1 - Mathf.Min((toaster.transform.position - center.position).magnitude/(edge.position - center.position).magnitude, 1);
                 toasterAnim.Play("ToasterDead");
                 go = false;
-                StartCoroutine(EndGame(score));
+                StartCoroutine(EndGame(1f));
             }
         }
     }
