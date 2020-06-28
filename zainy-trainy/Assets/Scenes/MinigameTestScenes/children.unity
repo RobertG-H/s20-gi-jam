@@ -273,5 +273,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChildrenOftheTrain
       objectReference: {fileID: 0}
+    - target: {fileID: 3325669965430184379, guid: abdd5f692b6b3fb0b9847607e689c3a6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abdd5f692b6b3fb0b9847607e689c3a6, type: 3}
