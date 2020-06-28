@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -25,9 +26,20 @@ namespace MainTrain
             if(player != null) player.HandleInput(currentInputs);
         }
 
+
         void IServiceProvider.RegisterServices()
         {
-            this.RegisterService<IRegisterMainTrainInputs>();
+            try
+            {
+                this.RegisterService<IRegisterMainTrainInputs>();
+
+            }catch(ArgumentNullException e)
+            {
+                Debug.Log("Error in IOC REGISTER FOR maintrianinput");
+                this.RegisterService<IRegisterMainTrainInputs>();
+
+            }
+
         }
 
         void IRegisterMainTrainInputs.RegisterPlayer(MainTrainPlayerController p)

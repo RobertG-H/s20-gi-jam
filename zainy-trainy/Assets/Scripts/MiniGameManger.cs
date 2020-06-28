@@ -19,6 +19,12 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 
 	public GameObject loseText;
 
+	public AudioClip win;
+
+	public AudioClip lose;
+
+	public AudioSource aSource;
+
 	private IEnumerator coroutine;
 
 	[HideInInspector]
@@ -97,7 +103,7 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 		winText.SetActive(false);
 
 		loseText.SetActive(false);
-
+		aSource = GetComponent<AudioSource>();
 
 	}
 
@@ -120,7 +126,8 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 		{
 			if (gameIsOver) return;
 			winText.SetActive(true);
-
+			aSource.clip = win;
+			aSource.Play();
 			gameIsOver = true;
 
 			coroutine = EndGame(5.0f, true);
@@ -138,7 +145,8 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 		{
 			if (gameIsOver) return;
 			loseText.SetActive(true);
-
+			aSource.clip = lose;
+			aSource.Play();
 			gameIsOver = true;
 
 			coroutine = EndGame(5.0f, false);
