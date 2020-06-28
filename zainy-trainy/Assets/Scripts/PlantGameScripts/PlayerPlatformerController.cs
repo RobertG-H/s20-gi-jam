@@ -14,8 +14,10 @@ public struct PlantPlayerInputs
 public class PlayerPlatformerController : MonoBehaviour
 {
 
-    public float horSpeed = 7;
-    public float jumpTakeOffSpeed = 10;
+    public static PlayerPlatformerController instance;
+
+    public float horSpeed;
+    public float jumpTakeOffSpeed;
     Vector2 velocity;
     bool grounded;
 
@@ -28,12 +30,15 @@ public class PlayerPlatformerController : MonoBehaviour
     private float jumptimer;
     bool facingRight = false;
 
+    int size=5;
+
     Rigidbody2D rb2d;
 
     // Use this for initialization
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        PlayerPlatformerController.instance = this;
         rb2d = GetComponent<Rigidbody2D>();
         currentInputs.horizontal = 0;
         currentInputs.jumping = false;
@@ -56,10 +61,43 @@ public class PlayerPlatformerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        print(col.name);
-        if (col.name == "bug")
+        if (col.tag == "Bug")
         {
-            Destroy(col.gameObject);
+            if (col.GetComponent<BugScript>().size<=size)
+            {
+                Destroy(col.gameObject);
+
+                if (size <= 9)
+                {
+                    print("size");
+                    print(size <= 9);
+                    size += 1;
+                    Vector3 scaler = transform.localScale;
+                    scaler = (scaler / ((size - 1) / 5f)) * (size / 5f);
+                    transform.localScale = scaler;
+                }
+                
+            }
+            else
+            {
+                //print("you cannot eat this");
+            }
+            
+        }
+
+    }
+
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "LeafCollider")
+        {
+            print("colliding");
+            if (currentInputs.down)
+            {
+                print("down-ing");
+                col.gameObject.GetComponent<LeafColliderScript>().playerPassThrough();
+                print(col.gameObject.name);
+            }
         }
     }
 
