@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float speed;
+    public float speed = 100f;
     public float defeat_pause_duration = 0.3f;
     public CottManager manager;
+    public Sprite defeated_sprite;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,7 @@ public class EnemyController : MonoBehaviour
     private IEnumerator BecomeDefeated()
     {
         speed = 0;
+        GetComponent<SpriteRenderer>().sprite = defeated_sprite;
         yield return new WaitForSeconds(defeat_pause_duration);
         Destroy(gameObject);
     }

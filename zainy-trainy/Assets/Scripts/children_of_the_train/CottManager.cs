@@ -6,17 +6,22 @@ public class CottManager : MonoBehaviour
 {
     public int spawns_remaining = 10;
     public int remaining_enemies;
+    public GameObject input;
+    public GameObject gloat;
 
     // Start is called before the first frame update
     void Start()
     {
-        remaining_enemies = spawns_remaining;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    void Awake()
+    {
+        remaining_enemies = spawns_remaining;
     }
 
     public void DecreaseSpawns()
@@ -43,7 +48,12 @@ public class CottManager : MonoBehaviour
 
     public void LoseGame()
     {
-        spawns_remaining = 0;
-        Debug.Log("Lose Game");
+        if (input.active) // First game over
+        {
+            spawns_remaining = 0;
+            gloat.active = true;
+            input.active = false;
+            Debug.Log("Lose Game");
+        }
     }
 }
