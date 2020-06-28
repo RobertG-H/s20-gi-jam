@@ -6,6 +6,7 @@ TagManager:
   tags:
   - inputmanager
   - module
+  - Cuts
   layers:
   - Default
   - TransparentFX

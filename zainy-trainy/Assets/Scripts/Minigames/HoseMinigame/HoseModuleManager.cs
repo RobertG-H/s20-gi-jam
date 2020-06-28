@@ -58,4 +58,9 @@ public class HoseModuleManager : MonoBehaviour, IAmAMinigame
 	{
 		return playerPlaying;
 	}
+
+	void IAmAMinigame.fixTrainCar(float amountToFix)
+	{
+		traincarinterface.AddDamage(-amountToFix);
+	}
 }

@@ -26,6 +26,7 @@ public class HoseMinigameHandler : MonoBehaviour
 		hoseHandler.baseTrans = hoseLevels[randind].anchorObject.transform;
 		countdowntoquit = 1f;
 		hoseHandler.nozzleObject.position = hoseHandler.baseTrans.position;
+		hoseHandler.handObject.position = hoseHandler.baseTrans.position;
 	}
 
 	float countdowntoquit = 1f;
@@ -39,6 +40,7 @@ public class HoseMinigameHandler : MonoBehaviour
 		if(countdowntoquit <0f)
 		{
 			hoseHandler.Clear();
+			this.gameObject.GetComponentInParent<HoseModuleManager>().MinigameCompleted(1f);
 			//CALL OUT
 			//END OF GAME
 		}
