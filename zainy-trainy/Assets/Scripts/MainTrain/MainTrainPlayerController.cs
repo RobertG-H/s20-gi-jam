@@ -32,11 +32,12 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
 
     void Awake()
     {
-        this.ResolveDependencies();
     }
 
     void Start()
     {
+        this.ResolveDependencies();
+
         rigidbody = GetComponent<Rigidbody2D>();
         photonView = GetComponent<PhotonView>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -50,6 +51,7 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
             cam.SetActive(false);
         }
         spriteRenderer.sprite = walkingSprite;
+
     }
 
     void Update()
@@ -61,7 +63,7 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
     void IAmAMainTrainPlayer.EnableCamera()
     {
         cam.SetActive(true);
-        spriteRenderer.sprite = walkingSprite;
+        photonView.RPC("RPCLeavingMiniGame", RpcTarget.AllViaServer);
     }
 
     void IAmAMainTrainPlayer.HandleInput(MainTrain.Inputs currentInputs)
@@ -95,7 +97,7 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
                 miniGameManager.DisableControls();
                 cam.SetActive(false);
                 currentModuleTrigger.EnterTheOneMinigame();
-                spriteRenderer.sprite = fixingSprite;
+                photonView.RPC("RPCStartingMiniGame", RpcTarget.AllViaServer);
             }
         }
 
@@ -118,6 +120,23 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
 
         return false;
     }
+
+    [PunRPC]
+    public void RPCStartingMiniGame()
+    {
+        spriteRenderer.sprite = fixingSprite;
+        rigidbody.velocity = new Vector2(0, 0);
+        rigidbody.isKinematic = true;
+    }
+
+    [PunRPC]
+    public void RPCLeavingMiniGame()
+    {
+        spriteRenderer.sprite = walkingSprite;
+        rigidbody.velocity = new Vector2(0, 0);
+        rigidbody.isKinematic = false;
+    }
+
 
 
 }

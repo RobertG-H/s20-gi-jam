@@ -10,8 +10,13 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 public class GameManager : MonoBehaviourPunCallbacks
 {
     public string PhotonPlayerPrefabName;
+    public string MiniGameManagerPrefabName;
     bool runOnce = true;
     #region UNITY
+    private void Awake()
+    {
+        PhotonNetwork.Instantiate(MiniGameManagerPrefabName, Vector3.zero, Quaternion.identity);
+    }
     void Start()
     {
         Hashtable props = new Hashtable
@@ -79,6 +84,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         Vector3 spawnPos = new Vector3(PhotonNetwork.LocalPlayer.GetPlayerNumber(),0.5f,0);
         PhotonNetwork.Instantiate(PhotonPlayerPrefabName, spawnPos, Quaternion.identity);
+
     }
     private bool CheckAllPlayerLoadedLevel()
     {

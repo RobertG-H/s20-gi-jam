@@ -39,6 +39,8 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - RPC_FixTrainCar
+  - RPCLeavingMiniGame
+  - RPCStartingMiniGame
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
