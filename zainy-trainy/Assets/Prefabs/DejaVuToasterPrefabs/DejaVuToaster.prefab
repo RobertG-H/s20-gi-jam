@@ -72,12 +72,12 @@ PrefabInstance:
     - target: {fileID: 2859085533898316744, guid: f2c7f90f13986c14796e78a3481e3a25,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -322
       objectReference: {fileID: 0}
     - target: {fileID: 2859085533898316744, guid: f2c7f90f13986c14796e78a3481e3a25,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -6969
       objectReference: {fileID: 0}
     - target: {fileID: 2859085533898316744, guid: f2c7f90f13986c14796e78a3481e3a25,
         type: 3}
@@ -210,15 +210,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: DejaVuToasterTrainCar
       objectReference: {fileID: 0}
-    - target: {fileID: 5666659804577492344, guid: bc51b5a7609252643926062b3d446272,
+    - target: {fileID: 6263003086353961614, guid: bc51b5a7609252643926062b3d446272,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_Offset.y
+      value: -4.022826
       objectReference: {fileID: 0}
-    - target: {fileID: 8157015068962372213, guid: bc51b5a7609252643926062b3d446272,
+    - target: {fileID: 6263003086353961614, guid: bc51b5a7609252643926062b3d446272,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.89
+      propertyPath: m_Size.y
+      value: 0.83821106
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263003086353961614, guid: bc51b5a7609252643926062b3d446272,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.07428551
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263003086353961614, guid: bc51b5a7609252643926062b3d446272,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 8.499647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc51b5a7609252643926062b3d446272, type: 3}
