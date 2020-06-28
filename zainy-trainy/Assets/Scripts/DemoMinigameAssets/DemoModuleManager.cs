@@ -35,10 +35,15 @@ public class DemoModuleManager : MonoBehaviour, IAmAMinigame
 
 	public void MinigameCompleted(float score)
 	{
-		traincarinterface.AddDamage(-score);
+		//traincarinterface.AddDamage(-score); // This is handled via rpc now
 		isBeingPlayed = false;
 		minigameToEnable.SetActive(false);
 		scoreReciever.RepaireCompleted(traincarinterface, this, score, playerPlaying);
+	}
+
+	void IAmAMinigame.fixTrainCar(float amountToFix)
+	{
+		traincarinterface.AddDamage(amountToFix);
 	}
 
 

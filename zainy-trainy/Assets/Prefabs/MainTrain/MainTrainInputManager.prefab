@@ -83,7 +83,18 @@ MonoBehaviour:
     m_ActionId: 850831a0-27a9-44d6-aeb4-0f1241eca038
     m_ActionName: Gameplay/Mouse2[/Mouse/rightButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 882009922}
+        m_MethodName: OnWKey
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 667226d4-7e77-45b9-8d23-25acde617a64
     m_ActionName: Gameplay/W[/Keyboard/w]
   - m_PersistentCalls:
@@ -121,13 +132,44 @@ MonoBehaviour:
     m_ActionId: 91d434c9-7eee-440c-bc17-461ad2062208
     m_ActionName: Gameplay/D[/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 882009922}
+        m_MethodName: OnSpaceKey
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: a5f8710a-66a0-4431-a73b-c8fdccb6fca6
     m_ActionName: Gameplay/Space[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: e6b4fd50-89af-47c7-b7ed-3b69668374eb
     m_ActionName: Gameplay/MouseDelta[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d181d9f8-36bd-44e0-9d44-50a0f698c1a1
+    m_ActionName: RobotUprising/Enter[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 247b0508-8b76-46c4-b189-2029ec980551
+    m_ActionName: RobotUprising/Down[/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 409cdd3a-1d4c-4ea9-987a-a2ebb1b6c5f9
+    m_ActionName: RobotUprising/Up[/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 365bcb37-fc94-4ee9-86c1-475e72b28b5c
+    m_ActionName: RobotUprising/Ctrl[/Keyboard/ctrl]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0780dd00-1bbf-4f6f-92b5-072f4fff8aa6
+    m_ActionName: RobotUprising/S[/Keyboard/s]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
