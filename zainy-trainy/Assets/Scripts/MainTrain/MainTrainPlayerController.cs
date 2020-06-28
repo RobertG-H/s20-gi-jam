@@ -15,6 +15,11 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
 
     private Rigidbody2D rigidbody;
     private PhotonView photonView;
+
+    public Sprite walkingSprite;
+    public Sprite fixingSprite;
+    private SpriteRenderer spriteRenderer;
+
     public float speed;
     public float jumpForce;
     public GameObject cam;
@@ -34,6 +39,7 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
     {
         rigidbody = GetComponent<Rigidbody2D>();
         photonView = GetComponent<PhotonView>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         if (photonView.IsMine)
         {
             inputManager.RegisterPlayer(this);
@@ -43,6 +49,7 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
         {
             cam.SetActive(false);
         }
+        spriteRenderer.sprite = walkingSprite;
     }
 
     void Update()
@@ -54,6 +61,7 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
     void IAmAMainTrainPlayer.EnableCamera()
     {
         cam.SetActive(true);
+        spriteRenderer.sprite = walkingSprite;
     }
 
     void IAmAMainTrainPlayer.HandleInput(MainTrain.Inputs currentInputs)
@@ -82,9 +90,13 @@ public class MainTrainPlayerController : MonoBehaviour, IAmAMainTrainPlayer
 
         if(currentInputs.up)
         {
-            miniGameManager.DisableControls();
-            cam.SetActive(false);
-            if (currentModuleTrigger != null) currentModuleTrigger.EnterTheOneMinigame();
+            if (currentModuleTrigger != null)
+            {
+                miniGameManager.DisableControls();
+                cam.SetActive(false);
+                currentModuleTrigger.EnterTheOneMinigame();
+                spriteRenderer.sprite = fixingSprite;
+            }
         }
 
         if (isFacingRight) transform.localScale = new Vector3(1, 1, 1);
