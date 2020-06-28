@@ -30,6 +30,8 @@ public class PlayerPlatformerController : MonoBehaviour
     private float jumptimer;
     bool facingRight = false;
 
+    public bool isDead = false;
+
     int size=5;
 
     Rigidbody2D rb2d;
@@ -85,16 +87,21 @@ public class PlayerPlatformerController : MonoBehaviour
             
         }
 
+        if (col.name == "DeadBox")
+        {
+            Debug.Log("you are dead");
+            isDead = true;
+
+        }
+
     }
 
     void OnCollisionStay2D(Collision2D col)
     {
         if (col.gameObject.tag == "LeafCollider")
         {
-            print("colliding");
             if (currentInputs.down)
             {
-                print("down-ing");
                 col.gameObject.GetComponent<LeafColliderScript>().playerPassThrough();
                 print(col.gameObject.name);
             }

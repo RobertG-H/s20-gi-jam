@@ -6,29 +6,58 @@ public class PlantGameController : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public GameObject player;
+    public GameObject playerPrefab;
+    public int maxBugs;
+    GameObject plantPlayer;
     public GameObject bug;
     public List<Vector3> spawPositions;
     public List<Vector3 []> walkPositions;
     public float bugSpawnTimer;
     private float bugSpawnCounter;
     public List<GameObject> bugs;
+    private int bugSpawns;
+    
 
     Canvas canvas;
 
 
     void Start()
     {
-        Instantiate(player, new Vector3(0, 0, 0), Quaternion.identity);
+        bugSpawns = 1;
+        plantPlayer = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         //Instantiate(bug, new Vector3(2, 0, 0), Quaternion.identity);
         walkPositions = new List<Vector3[]>();
-        walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(1f, 1f, 0f) });
+        walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(1f, -1f, 0f) });
+        walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(0.5f, -0f, 0f) });
+        walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(-0.5f, -0.1f, 0f) });
+        walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(0.1f, 0f, 0f) });
+        walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(0.1f, -0.1f, 0f) });
+        walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(1f, -1f, 0f) });
+        walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(-1f, -1f, 0f) });
+        walkPositions.Add(new[] { new Vector3(0f, 0f, 0f), new Vector3(-1f, -1f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.7f, -0.5f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(-0.7f, -0.5f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(-0.7f, -0.5f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(-0.5f, -0.1f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(-0.5f, -0.1f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(-0.8f, -0.2f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(-1f, -0.4f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(1f, 0.3f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(1f, 0.2f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(1f, 0.2f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(1f, -0.3f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(1f, 0.5f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.4f, -0.7f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.9f, -0.2f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.5f, -0.6f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.5f, 0.1f, 0f) });
+        walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.7f, 0.1f, 0f) });
+        //walkPositions.Add(new[] { new Vector3(-0f, -0f, 0f), new Vector3(0.7f, 0.2f, 0f) });
 
-        int randomChoice = Random.Range(0, spawPositions.Count);
-        GameObject currentBug = Instantiate(bug, spawPositions[randomChoice], Quaternion.identity);
-        bugs.Add(currentBug);
-        currentBug.GetComponent<BugScript>().maxLeft = walkPositions[0][0];
-        currentBug.GetComponent<BugScript>().maxRight = walkPositions[0][1];
+
+
+
+
 
         bugSpawnCounter = 0;
 
@@ -37,13 +66,25 @@ public class PlantGameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bugSpawnCounter > bugSpawnTimer)
+        if ((bugSpawnCounter > bugSpawnTimer )&& bugSpawns<=maxBugs)
         {
             int randomChoice = Random.Range(0, spawPositions.Count);
             GameObject currentBug = Instantiate(bug, spawPositions[randomChoice], Quaternion.identity);
             bugs.Add(currentBug);
-            currentBug.GetComponent<BugScript>().maxLeft = walkPositions[0][0];
-            currentBug.GetComponent<BugScript>().maxRight = walkPositions[0][1];
+            currentBug.GetComponent<BugScript>().maxLeft = walkPositions[randomChoice][0];
+            currentBug.GetComponent<BugScript>().maxRight = walkPositions[randomChoice][1];
+
+            if (bugSpawns < 20)
+            {
+                
+                currentBug.GetComponent<BugScript>().changeSize(Random.Range(1, (int)(bugSpawns / 2)));
+                bugSpawns++;
+            }
+            else
+            {
+                currentBug.GetComponent<BugScript>().changeSize(Random.Range(1, 10));
+            }
+
 
             bugSpawnCounter = 0;
         }
@@ -52,10 +93,32 @@ public class PlantGameController : MonoBehaviour
             bugSpawnCounter += Time.deltaTime;
         }
 
-        if (spawPositions.Count == 0)
-        { 
-
+        if (bugs.Count==0 && bugSpawns>=20)
+        {
+            Debug.Log("you have eaten all the bugs");
+            resetPlantGame();
         }
 
+        if (plantPlayer.GetComponent<PlayerPlatformerController>().isDead)
+        {
+            resetPlantGame();
+        }
+
+    }
+
+    private void resetPlantGame()
+    {
+        Destroy(plantPlayer.gameObject);
+        foreach (GameObject incBug in bugs)
+        {
+            Destroy(incBug);
+        }
+        bugs.Clear();
+
+
+        bugSpawns = 1;
+        plantPlayer = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        //Instantiate(bug, new Vector3(2, 0, 0), Quaternion.identity);
+        bugSpawnCounter = 0;
     }
 }

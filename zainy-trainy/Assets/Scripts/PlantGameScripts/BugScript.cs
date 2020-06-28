@@ -23,9 +23,14 @@ public class BugScript : MonoBehaviour
         controller = GameObject.Find("PlantGameController").GetComponent("PlantGameController") as PlantGameController;
         startPos = gameObject.transform.position;
         rb2d = GetComponent<Rigidbody2D>();
-        size = Random.Range(1, 10);
+        size = 5;
+    }
+
+    public void changeSize(int size)
+    {
+        this.size = size;
         Vector3 scaler = transform.localScale;
-        scaler *= size/5f;
+        scaler *= size / 5f;
         transform.localScale = scaler;
     }
 
@@ -39,7 +44,16 @@ public class BugScript : MonoBehaviour
     {
         movingRight = !movingRight;
         rb2d.velocity = new Vector2(0f, 0f);
+        Flip();
     }
+
+    void Flip()
+    {
+        Vector3 scaler = transform.localScale;
+        scaler.x *= -1;
+        transform.localScale = scaler;
+    }
+
 
     private void FixedUpdate()
     {
