@@ -287,9 +287,6 @@ public class RobotUprising : MonoBehaviour
 					numberDefaultBad++;
 				}
 			}
-			Debug.Log("====");
-			Debug.Log(numberBad);
-			Debug.Log(numberDefaultBad);
 			score = (numberDefaultBad - numberBad)/(numberDefaultBad);
 			Debug.Log(score);
 			StartCoroutine("EndGame");
