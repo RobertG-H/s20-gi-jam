@@ -1484,7 +1484,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Rale Tail
+  m_Text: Rail Tale
 --- !u!222 &635595327
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5341,7 +5341,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16, y: -305}
+  m_AnchoredPosition: {x: 822.77, y: 0.000030518}
   m_SizeDelta: {x: 274.9, y: 239.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1977978120
@@ -5379,7 +5379,7 @@ MonoBehaviour:
 
     A - Move left
 
-    E - Move Right
+    D - Move Right
 
     W - Do Repair
 
