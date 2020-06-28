@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PhotonPlayerPrefabName: MainTrainPlayer
-  MiniGameManagerPrefabName: MiniGameManager
+  goalDistance: 1000
+  currentDistance: 0

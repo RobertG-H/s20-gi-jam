@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameToEnable: {fileID: 5804771021205848504}
   traincarObject: {fileID: 4963819472756494817}
+  currentMiniGame: 0
 --- !u!1 &5804771021809517413
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,6 +229,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5804771020897794792}
     m_Modifications:
+    - target: {fileID: 1302247447246276612, guid: 2da0463db389dc9469d4209501248316,
+        type: 3}
+      propertyPath: damagePerSecond
+      value: 0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 3715650470059451970, guid: 2da0463db389dc9469d4209501248316,
         type: 3}
       propertyPath: m_Name

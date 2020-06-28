@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using System.Linq;
 
 public enum MiniGames { WELDING, ROBOT, TOASTER, HOSE};
 
 public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOnRepairComplete, IAmAMinigameManager, IServiceProvider
 {
+	public float goalDistance;
 
-	float currentscore = 0f;
+	public int amtBrokenCarsToLose;
+
+	[HideInInspector]
+	public float currentDistance;
 
 	PhotonView photonView;
 
@@ -17,46 +22,45 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 
 	IAmAMainTrainPlayer player;
 
+	Dictionary<MiniGames, IAmAMinigame> allMiniGames = new Dictionary<MiniGames, IAmAMinigame>();
+
+	Dictionary<MiniGames, bool> isTrainCarBroken = new Dictionary<MiniGames, bool>();
+
+
 	void IServiceProvider.RegisterServices()
 	{
+		photonView = GetComponent<PhotonView>();
 		// This is now handled in awake because it is going to be instaniated by the PhotonGameManager
-		//if (!photonView.IsMine) return;
-		//this.RegisterService<IRecieveCarBreakAlert>();
-		//this.RegisterService<IGetScoresOnRepairComplete>();
-		//this.RegisterService<IAmAMinigameManager>();
+		this.RegisterService<IRecieveCarBreakAlert>();
+		this.RegisterService<IGetScoresOnRepairComplete>();
+		this.RegisterService<IAmAMinigameManager>();
 	}
 
 	void IGetScoresOnRepairComplete.RepaireCompleted(ICanBreakdown traincar, IAmAMinigame completedGame, float score, int playerid)
 	{
-		if (!photonView.IsMine) return;
 
 		print("Repairs Complete!");
-		currentscore += score * 100f;
 		controlsToDisable.SetActive(true);
 		player.EnableCamera();
 		// Send request to GameManager to fix all clients traincar
-		//GameManager.Instance.
+		FixTrainCar((int)completedGame.GetGameEnum(), score);
 	}
 
 
 	void IRecieveCarBreakAlert.TraincarIsBroken(GameObject Traincar, ICanBreakdown traincar, IAmAMinigame minigame)
 	{
-		if (!photonView.IsMine) return;
-
+		isTrainCarBroken[minigame.GetGameEnum()] = true;
 		print("TraincarIsBroken");
-
 	}
 
 	void IRecieveCarBreakAlert.TraincarIsDamaged(GameObject Traincar, ICanBreakdown traincar, IAmAMinigame minigame)
 	{
-		if (!photonView.IsMine) return;
 
 		print("TraincarIsDamaged");
 	}
 
 	void IAmAMinigameManager.DisableControls()
 	{
-		if (!photonView.IsMine) return;
 
 		controlsToDisable.SetActive(false);
 
@@ -64,7 +68,6 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 
 	void IAmAMinigameManager.EnableControls()
 	{
-		if (!photonView.IsMine) return;
 
 		controlsToDisable.SetActive(true);
 		player.EnableCamera();
@@ -73,7 +76,6 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 
 	void IAmAMinigameManager.RegisterPlayer(IAmAMainTrainPlayer p)
 	{
-		if (!photonView.IsMine) return;
 
 		player = p;
 	}
@@ -81,11 +83,67 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 	void Awake()
 	{
 		photonView = GetComponent<PhotonView>();
-		if (!photonView.IsMine) return;
-		this.RegisterService<IRecieveCarBreakAlert>();
-		this.RegisterService<IGetScoresOnRepairComplete>();
-		this.RegisterService<IAmAMinigameManager>();
-		controlsToDisable = GameObject.FindWithTag("inputmanager");
+		currentDistance = goalDistance;
+
 	}
+
+	void Start()
+	{
+		// Find all minigames
+		var search = FindObjectsOfType<MonoBehaviour>().OfType<IAmAMinigame>();
+		foreach (IAmAMinigame game in search)
+		{
+			allMiniGames.Add(game.GetGameEnum(), game);
+			isTrainCarBroken.Add(game.GetGameEnum(), false);
+			Debug.Log(string.Format("Adding ref to minigame: {0} ", game.GetGameEnum()));
+		}
+	}
+
+	void Update()
+	{
+		if (currentDistance <= 0)
+		{
+			//EndGame(true);
+		}
+		if (GetTotalBrokenCars() >= amtBrokenCarsToLose)
+		{
+			GameManager.Instance.EndGame(false, currentDistance);
+		}
+	}
+
+	int GetTotalBrokenCars()
+	{
+		int count = 0;
+		foreach (KeyValuePair<MiniGames, bool> entry in isTrainCarBroken)
+		{
+			if (entry.Value) count++;
+		}
+		Debug.Log(string.Format("Total broken cars: {0}", count));
+		return count;
+	}
+
+	#region PUNRPC
+
+	// Sync fixing of traincars
+
+	public void FixTrainCar(int miniGameNum, float amountToFix)
+	{
+		photonView.RPC("RPC_FixTrainCar", RpcTarget.AllViaServer, miniGameNum, amountToFix);
+	}
+
+	[PunRPC]
+	void RPC_FixTrainCar(int miniGameNum, float amountToFix)
+	{
+		if (amountToFix > 0)
+		{
+			isTrainCarBroken[(MiniGames)miniGameNum] = false;
+		}
+		IAmAMinigame gameTofix = allMiniGames[(MiniGames)miniGameNum];
+		gameTofix.fixTrainCar(amountToFix);
+		Debug.Log(string.Format("Is local: {0}, and fixing mini game: {1}", photonView.IsMine, miniGameNum));
+	}
+
+
+	#endregion
 
 }

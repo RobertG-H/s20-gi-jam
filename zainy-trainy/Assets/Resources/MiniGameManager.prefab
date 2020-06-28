@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8181647370954078796}
   - component: {fileID: 8181647370954078797}
-  - component: {fileID: 6499520828249815136}
+  - component: {fileID: 8181647372160316982}
   m_Layer: 0
   m_Name: MiniGameManager
   m_TagString: Untagged
@@ -44,8 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af415aaba3749704cb1b5d2ad61e9483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalDistance: 1000
+  amtBrokenCarsToLose: 2
+  currentDistance: 0
   controlsToDisable: {fileID: 0}
---- !u!114 &6499520828249815136
+--- !u!114 &8181647372160316982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

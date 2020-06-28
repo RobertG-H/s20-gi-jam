@@ -314,51 +314,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 883969496614944358, guid: 564d9671ecaa5d14bad83c8c68e4687a,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.42
-      objectReference: {fileID: 0}
-    - target: {fileID: 883969496614944358, guid: 564d9671ecaa5d14bad83c8c68e4687a,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.42
-      objectReference: {fileID: 0}
-    - target: {fileID: 883969496614944358, guid: 564d9671ecaa5d14bad83c8c68e4687a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.67
-      objectReference: {fileID: 0}
-    - target: {fileID: 883969496614944358, guid: 564d9671ecaa5d14bad83c8c68e4687a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 1861790394922789752, guid: 564d9671ecaa5d14bad83c8c68e4687a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -322
-      objectReference: {fileID: 0}
-    - target: {fileID: 1861790394922789752, guid: 564d9671ecaa5d14bad83c8c68e4687a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -6969
-      objectReference: {fileID: 0}
-    - target: {fileID: 2629790117493561200, guid: 564d9671ecaa5d14bad83c8c68e4687a,
-        type: 3}
-      propertyPath: damagePerSecond
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3953308163773607142, guid: 564d9671ecaa5d14bad83c8c68e4687a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3953308163773607142, guid: 564d9671ecaa5d14bad83c8c68e4687a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.68
-      objectReference: {fileID: 0}
     - target: {fileID: 6043615244572386204, guid: 564d9671ecaa5d14bad83c8c68e4687a,
         type: 3}
       propertyPath: m_Name
@@ -488,6 +443,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RobotUprising
       objectReference: {fileID: 0}
+    - target: {fileID: 3823158648344720639, guid: e2468d9cdba59ff409b3ddae183a2b3d,
+        type: 3}
+      propertyPath: damagePerSecond
+      value: 0.08
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2468d9cdba59ff409b3ddae183a2b3d, type: 3}
 --- !u!1001 &1586402063
@@ -556,16 +516,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MiniGameMP3Welding
-      objectReference: {fileID: 0}
-    - target: {fileID: 6986251992366720179, guid: dea945c7ef7618f48bde56236651c0c4,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 7951632934993460792, guid: dea945c7ef7618f48bde56236651c0c4,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dea945c7ef7618f48bde56236651c0c4, type: 3}
@@ -734,7 +684,7 @@ PrefabInstance:
     - target: {fileID: 4559426808325345316, guid: 5963cdac08740314e85dc0ba8419bda1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.68
+      value: 24.3
       objectReference: {fileID: 0}
     - target: {fileID: 4559426808325345316, guid: 5963cdac08740314e85dc0ba8419bda1,
         type: 3}
@@ -799,7 +749,12 @@ PrefabInstance:
     - target: {fileID: 4851373889595855123, guid: 5963cdac08740314e85dc0ba8419bda1,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6278268937204985765, guid: 5963cdac08740314e85dc0ba8419bda1,
+        type: 3}
+      propertyPath: currentMiniGame
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8000181459110379642, guid: 5963cdac08740314e85dc0ba8419bda1,
         type: 3}
@@ -1106,11 +1061,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6499520828249815136, guid: 7f316f82bb13d9643a2f11750f31bafc,
-        type: 3}
-      propertyPath: viewIdField
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8181647370954078787, guid: 7f316f82bb13d9643a2f11750f31bafc,
         type: 3}
       propertyPath: m_Name
@@ -1176,5 +1126,10 @@ PrefabInstance:
       propertyPath: controlsToDisable
       value: 
       objectReference: {fileID: 7738350160767369205}
+    - target: {fileID: 8181647372160316982, guid: 7f316f82bb13d9643a2f11750f31bafc,
+        type: 3}
+      propertyPath: viewIdField
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f316f82bb13d9643a2f11750f31bafc, type: 3}

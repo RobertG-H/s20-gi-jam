@@ -584,7 +584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 1
-  damagePerSecond: 0
+  damagePerSecond: 0.05
 --- !u!61 &6263003086353961614
 BoxCollider2D:
   m_ObjectHideFlags: 0

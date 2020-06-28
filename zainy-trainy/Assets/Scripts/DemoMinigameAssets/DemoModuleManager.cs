@@ -45,7 +45,7 @@ public class DemoModuleManager : MonoBehaviour, IAmAMinigame
 
 	void IAmAMinigame.fixTrainCar(float amountToFix)
 	{
-		traincarinterface.AddDamage(amountToFix);
+		traincarinterface.AddDamage(-amountToFix);
 	}
 
 

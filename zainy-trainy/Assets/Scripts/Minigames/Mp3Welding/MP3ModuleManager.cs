@@ -48,7 +48,7 @@ public class MP3ModuleManager : MonoBehaviour, IAmAMinigame
 
 	void IAmAMinigame.fixTrainCar(float amountToFix)
 	{
-		traincarinterface.AddDamage(amountToFix);
+		traincarinterface.AddDamage(-amountToFix);
 	}
 
 	bool IAmAMinigame.GetIsMinigameCurrentlyRunning()
