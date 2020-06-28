@@ -70,7 +70,7 @@ public class WeldingWallController : MonoBehaviour
             Debug.Log("At start pos!");
             if(gameState != states.PLAYING) gameState = states.PLAYING;
         }
-        if (CheckMouseCollide(endLayerMask))
+        if (CheckMouseCollide(endLayerMask) && gameState == states.PLAYING)
         {
             Debug.Log("COMPLETE MP3 WELDING");
             gameState = states.WON;

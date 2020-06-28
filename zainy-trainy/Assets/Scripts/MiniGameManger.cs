@@ -15,6 +15,12 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 
 	public Text distanceText;
 
+	public GameObject winText;
+
+	public GameObject loseText;
+
+	private IEnumerator coroutine;
+
 	[HideInInspector]
 	public float currentDistance;
 
@@ -88,6 +94,10 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 	{
 		photonView = GetComponent<PhotonView>();
 		currentDistance = goalDistance;
+		winText.SetActive(false);
+
+		loseText.SetActive(false);
+
 
 	}
 
@@ -109,19 +119,31 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 		if (currentDistance <= 0)
 		{
 			if (gameIsOver) return;
+			winText.SetActive(true);
+
 			gameIsOver = true;
-			GameManager.Instance.EndGame(true, 0);
+
+			coroutine = EndGame(5.0f, true);
+			StartCoroutine(coroutine);
+
 		}
 		else
 		{
-			currentDistance -= 20.0f * Time.deltaTime;
-			distanceText.text = string.Format("Distance: {0}", currentDistance.ToString());
+			if (gameIsOver) return;
+
+			currentDistance -=  8f * Time.deltaTime;
+			distanceText.text = string.Format("Distance: {0}km", ((int)currentDistance).ToString());
 		}
 		if (GetTotalBrokenCars() >= amtBrokenCarsToLose)
 		{
 			if (gameIsOver) return;
+			loseText.SetActive(true);
+
 			gameIsOver = true;
-			GameManager.Instance.EndGame(false, currentDistance);
+
+			coroutine = EndGame(5.0f, false);
+			StartCoroutine(coroutine);
+
 		}
 	}
 
@@ -134,6 +156,15 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 		}
 		Debug.Log(string.Format("Total broken cars: {0}", count));
 		return count;
+	}
+
+	private IEnumerator EndGame(float waitTime, bool didWin)
+	{
+		while (true)
+		{
+			yield return new WaitForSeconds(waitTime);
+			GameManager.Instance.EndGame(didWin, currentDistance);
+		}
 	}
 
 	#region PUNRPC
