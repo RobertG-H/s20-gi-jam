@@ -43,6 +43,7 @@ public class WeldingWallController : MonoBehaviour
         wallLayerMask = 1 << LayerMask.NameToLayer("MP3Wall");
         startLayerMask = 1 << LayerMask.NameToLayer("MP3StartPoint");
         endLayerMask = 1 << LayerMask.NameToLayer("MP3EndPoint");
+        isPressingDown = true;
     }
 
     private void OnEnable()
@@ -70,7 +71,7 @@ public class WeldingWallController : MonoBehaviour
             Debug.Log("At start pos!");
             if(gameState != states.PLAYING) gameState = states.PLAYING;
         }
-        if (CheckMouseCollide(endLayerMask))
+        if (CheckMouseCollide(endLayerMask) && gameState == states.PLAYING)
         {
             Debug.Log("COMPLETE MP3 WELDING");
             gameState = states.WON;
@@ -132,7 +133,7 @@ public class WeldingWallController : MonoBehaviour
 
     public void OnMouse1(InputAction.CallbackContext context)
     {
-        isPressingDown = context.ReadValueAsButton();
+        isPressingDown = true;//context.ReadValueAsButton();
         if (isPressingDown && gameState == states.PLAYING)
         {
             if (!doesLineExist)

@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5191299893197123926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5191299893197123924}
+  - component: {fileID: 5191299893197123925}
+  m_Layer: 0
+  m_Name: PlantGameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5191299893197123924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5191299893197123926}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.36227962, y: 0.21555808, z: -0.35528913}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5191299893197123925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5191299893197123926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc1d66697487678438cc22dc15199818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 5743610653539095393, guid: c099f39bab38697499098b61fb897e00,
+    type: 3}
+  maxBugs: 30
+  bug: {fileID: 8947262721725956938, guid: 32a8218341c31664db1d35048f1305ca, type: 3}
+  spawPositions:
+  - {x: -5.394126, y: -2.45757, z: 0}
+  - {x: -3.96, y: -3.62, z: 0}
+  - {x: -3.96, y: -1.32, z: 0}
+  - {x: 3.17, y: -3.62, z: 0}
+  - {x: 4.42, y: -3.53, z: 0}
+  - {x: 3.39, y: -5.43, z: 0}
+  - {x: 5.35, y: -3.88, z: 0}
+  - {x: 6.2, y: -0.67, z: 0}
+  - {x: 5.67, y: 0.51, z: 0}
+  - {x: 0.66, y: 2.21, z: 0}
+  - {x: -4.84, y: 2.2, z: 0}
+  - {x: -2.51, y: 1.41, z: 0}
+  - {x: -1.67, y: 2.92, z: 0}
+  - {x: -0.93, y: 5.04, z: 0}
+  - {x: -2.3, y: -0.32, z: 0}
+  - {x: 1.04, y: -0.76, z: 0}
+  - {x: -8.74, y: -1.51, z: 0}
+  - {x: -10.17, y: 1.79, z: 0}
+  - {x: -6.51, y: 3.33, z: 0}
+  - {x: -6.77, y: -1.98, z: 0}
+  - {x: -10.38, y: 5.8, z: 0}
+  - {x: -7.82, y: 5.78, z: 0}
+  - {x: -6.52, y: 4.94, z: 0}
+  - {x: -1.96, y: 4.83, z: 0}
+  - {x: -0.15, y: 6.7, z: 0}
+  - {x: 3.4, y: 5.86, z: 0}
+  - {x: 6.4, y: 5.51, z: 0}
+  - {x: 8.47, y: 3.9, z: 0}
+  - {x: 8.93, y: 5.13, z: 0}
+  - {x: 8.85, y: 4.14, z: 0}
+  - {x: 9.86, y: 3.17, z: 0}
+  - {x: 9.19, y: 0.29, z: 0}
+  - {x: 9.88, y: -1.1, z: 0}
+  - {x: 3.75, y: 0.85, z: 0}
+  - {x: 3.58, y: 1.69, z: 0}
+  - {x: 1.33, y: 2.68, z: 0}
+  bugSpawnTimer: 1
+  bugs: []
+  bugsEaten: 0
