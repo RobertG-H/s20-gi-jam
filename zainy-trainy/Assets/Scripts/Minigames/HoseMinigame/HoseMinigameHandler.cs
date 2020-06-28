@@ -21,6 +21,12 @@ public class HoseMinigameHandler : MonoBehaviour
 	{
 		hoseHandler.isPlugged = false;
 		int randind = Random.Range(0, hoseLevels.Count);
+
+		for(int i =0; i < hoseLevels.Count; i++)
+		{
+			hoseLevels[i].gameObject.SetActive(i == randind);
+		}
+
 		hoseLevels[randind].gameObject.SetActive(true);
 		hoseHandler.activeLevel = hoseLevels[randind];
 		hoseHandler.baseTrans = hoseLevels[randind].anchorObject.transform;
@@ -41,8 +47,6 @@ public class HoseMinigameHandler : MonoBehaviour
 		{
 			hoseHandler.Clear();
 			this.gameObject.GetComponentInParent<HoseModuleManager>().MinigameCompleted(1f);
-			//CALL OUT
-			//END OF GAME
 		}
 	}
 }
