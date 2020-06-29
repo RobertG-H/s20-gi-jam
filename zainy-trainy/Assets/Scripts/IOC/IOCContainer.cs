@@ -14,17 +14,17 @@ public static class IOCContainer
 	private static Dictionary<Type, FieldInfo[]> typeFields = new Dictionary<Type, FieldInfo[]>();
 
 
-	public static void RegisterService<T>(this MonoBehaviour serviceToRegister, string key = null)
+	public static void RegisterService<T>(this MonoBehaviour serviceToRegister, string key = "")
 	{
 		Register<T>(serviceToRegister, key);
 	}
 
-	public static void Register<T>(object serviceToRegister, string key = null) 
+	public static void Register<T>(object serviceToRegister, string key = "") 
 	{
 		Register(typeof(T), serviceToRegister, key);
 	}
 
-	public static void Register(Type type, object service, string key = null)
+	public static void Register(Type type, object service, string key = "")
 	{
 		if (!IsRegistered(type, key))
 		{
@@ -41,27 +41,28 @@ public static class IOCContainer
 			Debug.LogError("Tried to register a duplicate type and key! \n TYPE: " + type + "   KEY: \"" + key + "\"    object: " + service);
 	}
 
-	public static void UnRegister<T>(this MonoBehaviour serviceToRegister, string key = null)
+	public static void UnRegister<T>(this MonoBehaviour providerToRegister, string key = "")
 	{
-		UnRegister<T>(serviceToRegister, key);
+		UnRegister(typeof(T),providerToRegister, key);
 	}
 
-	public static void UnRegister<T>(object serviceToRegister, string key = null)
+	public static void UnRegister<T>(object providerToUnregister, string key = "")
 	{
-		UnRegister(typeof(T), serviceToRegister, key);
+		UnRegister(typeof(T), providerToUnregister, key);
 	}
 
-	private static void UnRegister(Type type, object service, string key)
+	private static void UnRegister(Type serviceType, object provider, string key = "")
 	{
-		if(IsRegistered(type, key))
+		if(IsRegistered(serviceType, key))
 		{
-			registeredProviders[type].Remove(key);
+			registeredProviders[serviceType].Remove(key);
 		}
 	}
 
 
-	private static bool IsRegistered(Type t, string key)
+	private static bool IsRegistered(Type t, string key = "")
 	{
+		//this should throw an error like "key must not be null" or soemthing but that just means you are trying to double register
 		if(registeredProviders.ContainsKey(t))
 			return registeredProviders[t].ContainsKey(key);
 

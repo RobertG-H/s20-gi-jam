@@ -51,6 +51,12 @@ public class MiniGameManger : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresOn
 		this.RegisterService<IGetScoresOnRepairComplete>();
 		this.RegisterService<IAmAMinigameManager>();
 	}
+	void OnDestroy()
+	{
+		this.UnRegister<IRecieveCarBreakAlert>();
+		this.UnRegister<IGetScoresOnRepairComplete>();
+		this.UnRegister<IAmAMinigameManager>();
+	}
 
 	void IGetScoresOnRepairComplete.RepaireCompleted(ICanBreakdown traincar, IAmAMinigame completedGame, float score, int playerid)
 	{

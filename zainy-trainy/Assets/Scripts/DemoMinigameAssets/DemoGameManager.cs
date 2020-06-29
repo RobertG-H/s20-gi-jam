@@ -62,4 +62,11 @@ public class DemoGameManager : MonoBehaviour, IRecieveCarBreakAlert, IGetScoresO
 		moduleObject.GetComponent<IAmAMinigame>().OpenMinigame(1);
 		canvastodisable.SetActive(false);
 	}
+
+
+	void OnDestroy()
+	{
+		this.UnRegister<IRecieveCarBreakAlert>();
+		this.UnRegister<IGetScoresOnRepairComplete>();
+	}
 }

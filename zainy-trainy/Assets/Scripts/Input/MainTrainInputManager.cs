@@ -37,9 +37,7 @@ namespace MainTrain
             {
                 Debug.Log("Error in IOC REGISTER FOR maintrianinput");
                 this.RegisterService<IRegisterMainTrainInputs>();
-
             }
-
         }
 
         void IRegisterMainTrainInputs.RegisterPlayer(MainTrainPlayerController p)
@@ -81,5 +79,11 @@ namespace MainTrain
             player.HandleInput(currentInputs);
         }
 
-    }
+
+		public void OnDestroy()
+		{
+			this.UnRegister<IRegisterMainTrainInputs>();
+		}
+
+	}
 }
